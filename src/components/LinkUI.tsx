@@ -12,7 +12,7 @@ export const LinkUI = ({ children, href, className }: LinkUIProps) => {
     <Link
       href={href}
       className={twMerge(
-        "text-sm font-medium dark:text-darkmode text-ligthmode hover:opacity-75 transition-all truncate",
+        "text-sm font-medium dark:text-darkmode text-lightmode hover:opacity-75 transition-all truncate",
         className
       )}
     >

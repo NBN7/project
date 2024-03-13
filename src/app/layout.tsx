@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="min-h-screen dark:bg-darkmode dark:text-darkmode bg-lightmode text-ligthmode">
+      <body className="min-h-screen dark:bg-darkmode dark:text-darkmode bg-lightmode text-lightmode">
         <Providers>
           <NavbarComponent />
           {children}
