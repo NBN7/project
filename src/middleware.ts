@@ -7,14 +7,14 @@ export async function middleware(req: NextRequest) {
 
   const { pathname } = req.nextUrl;
 
-  // Si el usuario está autenticado y está accediendo a /auth, redirígelo.
+  // if the user is logged in and tries to access the auth page, redirect to the home page
   if (token && pathname.startsWith("/auth")) {
     return NextResponse.redirect(new URL("/", req.url));
   }
 
-  // Aplica el middleware solo a las rutas especificadas.
+  // apply middleware only to this routes
   if (pathname.startsWith("/profile") || pathname.startsWith("/dashboard")) {
-    // Aquí puedes agregar cualquier otra lógica de middleware que necesites.
+    // if the user is not logged in, redirect to the auth page
     if (!token) {
       return NextResponse.redirect(new URL("/auth", req.url));
     }
