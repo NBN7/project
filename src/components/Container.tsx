@@ -14,7 +14,7 @@ export const Container = ({
   return (
     <section
       className={twMerge(
-        "w-full flex flex-col items-center justify-center",
+        "w-full flex flex-col items-center justify-center px-4",
         sectionClassName
       )}
     >
