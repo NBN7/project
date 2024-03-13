@@ -4,7 +4,7 @@ import { useSession } from "next-auth/react";
 import { signOut } from "next-auth/react";
 
 import { LinkUI } from "./LinkUI";
-import { SwitchTheme } from "./SwitchTheme";
+import { SwitchThemeButton } from "./SwitchThemeButton";
 
 import { Navbar, NavbarContent, NavbarItem } from "@nextui-org/navbar";
 import { Avatar } from "@nextui-org/avatar";
@@ -31,7 +31,7 @@ export const NavbarComponent = () => {
             />
           ) : (
             <div className="flex items-center gap-2">
-              <SwitchTheme />
+              <SwitchThemeButton />
               {session ? (
                 <Dropdown>
                   <DropdownTrigger
