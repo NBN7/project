@@ -6,14 +6,14 @@ import { useSwitchTheme } from "@/hooks/useSwitchTheme";
 import { Button } from "@nextui-org/button";
 import { IoSunny, IoMoon } from "react-icons/io5";
 
-export const SwitchTheme = () => {
+export const SwitchThemeButton = () => {
   const { data: session, update } = useSession();
 
   const [localTheme, setLocalTheme] = useState(() =>
     typeof window !== "undefined" ? window.localStorage.getItem("theme") : null
   );
 
-  const iconSize = "18px";
+  const iconSize = "20px";
 
   // fn to update the session we get from useSession
   const updateSession = async () => {
