@@ -28,13 +28,14 @@ export const SignInButton = ({ className }: SignInButtonProps) => {
   return (
     <Button
       className={twMerge("", className)}
-      variant="light"
+      variant="bordered"
       startContent={
         isLoading ? null : (
           <FaGoogle size="18px" className="dark:text-icondark text-iconlight" />
         )
       }
       isLoading={isLoading}
+      radius="lg"
       onClick={handleClick}
     >
       Sign In with Google

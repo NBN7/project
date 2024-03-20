@@ -12,7 +12,7 @@ export const useSwitchTheme = ({ id, updateSession }: UseSwitchThemeProps) => {
     mutationFn: () => switchTheme(id as string),
     onSuccess: () => {
       updateSession();
-      console.log("success");
+      // console.log("success"); replace with toast
     },
     onError: () => {
       console.error("error");

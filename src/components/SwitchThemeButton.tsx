@@ -1,17 +1,28 @@
 "use client";
 
 import { useEffect, useState } from "react";
+
 import { useSession } from "next-auth/react";
+
 import { useSwitchTheme } from "@/hooks/useSwitchTheme";
+
+import { THEME } from "@/constants/theme";
+import type { TTheme } from "@/types/theme";
+
 import { Button } from "@nextui-org/button";
+
 import { IoSunny, IoMoon } from "react-icons/io5";
 
 export const SwitchThemeButton = () => {
   const { data: session, update } = useSession();
 
-  const [localTheme, setLocalTheme] = useState(() =>
-    typeof window !== "undefined" ? window.localStorage.getItem("theme") : null
-  );
+  const [localTheme, setLocalTheme] = useState<TTheme | null>(() => {
+    const theme =
+      typeof window !== "undefined"
+        ? window.localStorage.getItem("theme")
+        : null;
+    return theme === THEME.DARK || theme === THEME.LIGHT ? theme : null;
+  });
 
   const iconSize = "20px";
 
@@ -21,7 +32,7 @@ export const SwitchThemeButton = () => {
       ...session,
       user: {
         ...session?.user,
-        theme: session?.user?.theme === "DARK" ? "LIGHT" : "DARK",
+        theme: session?.user?.theme === THEME.DARK ? THEME.LIGHT : THEME.DARK,
       },
     });
   };
@@ -34,7 +45,7 @@ export const SwitchThemeButton = () => {
 
   // fn to apply the theme
   const applyTheme = (theme: string) => {
-    if (theme === "DARK") {
+    if (theme === THEME.DARK) {
       document.querySelector("html")!.classList.add("dark");
     } else {
       document.querySelector("html")!.classList.remove("dark");
@@ -47,7 +58,7 @@ export const SwitchThemeButton = () => {
     const currentTheme = session?.user ? session.user.theme : localTheme;
 
     // this is used to update the theme locally
-    const newTheme = currentTheme === "DARK" ? "LIGHT" : "DARK";
+    const newTheme = currentTheme === THEME.DARK ? THEME.LIGHT : THEME.DARK;
 
     // if the user is logged in, update the theme in the database
     if (session?.user) {
@@ -76,7 +87,7 @@ export const SwitchThemeButton = () => {
       radius="full"
       onClick={toggleTheme}
     >
-      {(session?.user ? session.user.theme : localTheme) === "DARK" ? (
+      {(session?.user ? session.user.theme : localTheme) === THEME.DARK ? (
         <IoSunny size={iconSize} className="text-icondark" />
       ) : (
         <IoMoon size={iconSize} className="text-iconlight" />

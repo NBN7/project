@@ -14,9 +14,11 @@ const config: Config = {
     extend: {
       textColor: {
         darkmode: "#ECEDEE",
-        ligthmode: "#11181C",
+        lightmode: "#11181C",
         icondark: "#A1A1AA",
         iconlight: "#52525B",
+        greydark: "#A1A1AA",
+        greylight: "#71717A",
       },
       backgroundColor: {
         darkmode: "#141518",
