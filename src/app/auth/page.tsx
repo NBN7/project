@@ -4,17 +4,25 @@ import { Container } from "@/components/Container";
 export default function AuthPage() {
   return (
     <Container sectionClassName="mt-20">
-      <div className="flex flex-col gap-2">
-        <h1 className="text-4xl font-semibold">
+      <div className="w-full flex flex-col gap-6">
+        {/* title */}
+        <h1 className="text-4xl font-semibold text-pretty">
           Welcome to{" "}
           <span className="from-[#0070F0] to-[#19cfff] bg-clip-text text-transparent bg-gradient-to-b">
             Notes
           </span>
+          
         </h1>
-        <p className="dark:text-greydark text-greylight">
-          Sign In to make the most of the app
+
+        {/* description */}
+        <p className="text-xl dark:text-greydark text-greylight">
+          Sign In to do the most of the app.
         </p>
-        <SignInButton className="w-[200px] mt-4" />
+
+        {/* buttons */}
+        <div className="flex flex-col sm:flex-row gap-2">
+          <SignInButton />
+        </div>
       </div>
     </Container>
   );

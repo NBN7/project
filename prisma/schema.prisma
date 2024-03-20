@@ -61,6 +61,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   Note          Note[]
+  Tabs          Tabs[]
 }
 
 model VerificationToken {
@@ -79,4 +80,17 @@ model Note {
   updatedAt DateTime @updatedAt
   authorId  String
   user      User     @relation(fields: [authorId], references: [id])
+  Tabs      Tabs?    @relation(fields: [tabsId], references: [id])
+  tabsId    String?
+}
+
+// each user can have multiple tabs
+// each tab can have multiple notes
+
+model Tabs {
+  id       String @id @default(uuid())
+  title    String @db.VarChar(32)
+  authorId String
+  user     User   @relation(fields: [authorId], references: [id])
+  Note     Note[]
 }

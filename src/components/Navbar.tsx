@@ -47,7 +47,11 @@ export const NavbarComponent = () => {
                   </DropdownTrigger>
 
                   <DropdownMenu variant="light" aria-label="Static Actions">
-                    <DropdownItem onClick={() => signOut()}>
+                    <DropdownItem>
+                      <LinkUI href="/notes">Notes</LinkUI>
+                    </DropdownItem>
+                    <DropdownItem>Tabs</DropdownItem>
+                    <DropdownItem color="danger" onClick={() => signOut()}>
                       Sign Out
                     </DropdownItem>
                   </DropdownMenu>

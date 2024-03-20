@@ -35,6 +35,7 @@ export const SignInButton = ({ className }: SignInButtonProps) => {
         )
       }
       isLoading={isLoading}
+      radius="lg"
       onClick={handleClick}
     >
       Sign In with Google

@@ -13,7 +13,7 @@ export async function middleware(req: NextRequest) {
   }
 
   // apply middleware only to this routes
-  if (pathname.startsWith("/profile") || pathname.startsWith("/dashboard")) {
+  if (pathname.startsWith("/notes") || pathname.startsWith("/profile") || pathname.startsWith("/dashboard")) {
     // if the user is not logged in, redirect to the auth page
     if (!token) {
       return NextResponse.redirect(new URL("/auth", req.url));
@@ -24,5 +24,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/profile/:path*", "/dashboard:path*", "/auth:path*"],
+  matcher: ["/notes:path*", "/profile:path*", "/dashboard:path*", "/auth:path*"],
 };
