@@ -1,10 +1,8 @@
 "use client";
 
 import { Container } from "@/components/Container";
-
-import { Button } from "@nextui-org/button";
-
-import { IoArrowForward, IoLogoGithub } from "react-icons/io5";
+import { GetStartedButton } from "@/components/GetStartedButton";
+import { GithubButton } from "@/components/GithubButton";
 
 export default function HomePage() {
   return (
@@ -21,26 +19,13 @@ export default function HomePage() {
 
           {/* description */}
           <p className="text-xl dark:text-greydark text-greylight">
-            Fast and modern notes.
+            Fast and modern [App].
           </p>
 
           {/* buttons */}
           <div className="flex flex-col sm:flex-row gap-2">
-            <Button
-              endContent={<IoArrowForward />}
-              radius="lg"
-              className="sm:w-[200px] bg-gradient-to-tr from-[#0070F0] to-[#19cfff] text-white shadow-lg"
-            >
-              Get Started
-            </Button>
-            <Button
-              startContent={<IoLogoGithub size="18px" />}
-              radius="lg"
-              variant="bordered"
-              className="sm:w-[200px] dark:bg-gradient-to-tr dark:from-[#000000] dark:to-[#171717] dark:text-darkmode text-lightmode shadow-lg"
-            >
-              GitHub
-            </Button>
+            <GetStartedButton />
+            <GithubButton />
           </div>
         </div>
       </Container>

@@ -60,8 +60,8 @@ model User {
   theme         String    @default("LIGHT")
   accounts      Account[]
   sessions      Session[]
-  Note          Note[]
-  Tabs          Tabs[]
+
+  // add relations down here
 }
 
 model VerificationToken {
@@ -70,27 +70,4 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
-}
-
-model Note {
-  id        String   @id @default(uuid())
-  title     String   @db.VarChar(32)
-  content   String   @db.VarChar(255)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  authorId  String
-  user      User     @relation(fields: [authorId], references: [id])
-  Tabs      Tabs?    @relation(fields: [tabsId], references: [id])
-  tabsId    String?
-}
-
-// each user can have multiple tabs
-// each tab can have multiple notes
-
-model Tabs {
-  id       String @id @default(uuid())
-  title    String @db.VarChar(32)
-  authorId String
-  user     User   @relation(fields: [authorId], references: [id])
-  Note     Note[]
 }

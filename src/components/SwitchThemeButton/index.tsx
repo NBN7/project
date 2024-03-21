@@ -6,10 +6,12 @@ import { useSession } from "next-auth/react";
 
 import { useSwitchTheme } from "@/hooks/useSwitchTheme";
 
-import { THEME } from "@/constants/theme";
-import type { TTheme } from "@/types/theme";
+import { Skeleton } from "@/components/SwitchThemeButton/Skeleton";
 
 import { Button } from "@nextui-org/button";
+
+import { THEME } from "@/constants/theme";
+import type { TTheme } from "@/types/theme";
 
 import { IoSunny, IoMoon } from "react-icons/io5";
 
@@ -23,6 +25,7 @@ export const SwitchThemeButton = () => {
         : null;
     return theme === THEME.DARK || theme === THEME.LIGHT ? theme : null;
   });
+  const [themeLoaded, setThemeLoaded] = useState(false);
 
   const iconSize = "20px";
 
@@ -77,8 +80,13 @@ export const SwitchThemeButton = () => {
     const theme = session?.user?.theme ?? localTheme;
     if (theme) {
       applyTheme(theme);
+      setThemeLoaded(true);
     }
   }, [session, localTheme]);
+
+  if (!themeLoaded) {
+    return <Skeleton />;
+  }
 
   return (
     <Button
@@ -87,7 +95,7 @@ export const SwitchThemeButton = () => {
       radius="full"
       onClick={toggleTheme}
     >
-      {(session?.user ? session.user.theme : localTheme) === THEME.DARK ? (
+      {(session ? session.user.theme : localTheme) === THEME.DARK ? (
         <IoSunny size={iconSize} className="text-icondark" />
       ) : (
         <IoMoon size={iconSize} className="text-iconlight" />

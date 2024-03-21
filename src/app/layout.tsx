@@ -4,7 +4,7 @@ import "./globals.css";
 import "@fontsource/onest";
 
 export const metadata: Metadata = {
-  title: "Notes",
+  title: "App",
   description: "Default description",
 };
 
