@@ -20,7 +20,7 @@ export const SignInButton = ({ className }: SignInButtonProps) => {
   const handleClick = async () => {
     setIsLoading(true);
 
-    await signIn("google");
+    await signIn("google", { callbackUrl: "/" });
 
     setIsLoading(false);
   };
