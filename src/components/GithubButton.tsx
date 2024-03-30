@@ -11,7 +11,7 @@ export const GithubButton = () => {
         startContent={<IoLogoGithub size="18px" />}
         radius="lg"
         variant="bordered"
-        className="sm:w-[200px] dark:bg-gradient-to-tr dark:from-[#000000] dark:to-[#171717] dark:text-darkmode text-lightmode shadow-lg"
+        className="sm:w-[200px] w-full dark:bg-gradient-to-tr dark:from-[#000000] dark:to-[#171717] dark:text-darkmode text-lightmode shadow-lg"
       >
         GitHub
       </Button>
