@@ -1,8 +1,8 @@
 "use client";
 
 import { Container } from "@/components/Container";
-import { GetStartedButton } from "@/components/GetStartedButton";
-import { GithubButton } from "@/components/GithubButton";
+import { GetStartedButton } from "@/components/CustomButtons/GetStartedButton";
+import { GithubButton } from "@/components/CustomButtons/GithubButton";
 
 export default function HomePage() {
   return (
@@ -19,7 +19,7 @@ export default function HomePage() {
 
           {/* description */}
           <p className="text-xl dark:text-greydark text-greylight">
-            Fast and modern [App].
+            Fast and modern [Savings App].
           </p>
 
           {/* buttons */}

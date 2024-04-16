@@ -1,3 +1,5 @@
+import { checkUserSession } from "@/utils/checkUserSession";
+
 import { NextResponse } from "next/server";
 import { prisma } from "@/libs/prisma";
 
@@ -7,6 +9,11 @@ import type { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 export async function POST(req: NextRequest, { params }: { params: Params }) {
   try {
     const { user } = params;
+
+    const sessionCheck = await checkUserSession(user);
+    if (!sessionCheck.isValid) {
+      return sessionCheck.response;
+    }
 
     const userExists = await prisma.user.findUnique({
       where: { id: user },

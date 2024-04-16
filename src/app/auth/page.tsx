@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 
-import { SignInButton } from "@/components/SignInButton";
+import { SignInButton } from "@/components/CustomButtons/SignInButton";
 import { Container } from "@/components/Container";
 
 export default function AuthPage() {

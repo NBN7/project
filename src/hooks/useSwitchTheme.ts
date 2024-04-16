@@ -9,7 +9,7 @@ interface UseSwitchThemeProps {
 
 export const useSwitchTheme = ({ id, updateSession }: UseSwitchThemeProps) => {
   const { mutate: useSwitchThemeMutation } = useMutation({
-    mutationFn: () => switchTheme(id as string),
+    mutationFn: () => switchTheme(id),
     onSuccess: () => {
       updateSession();
       // console.log("success"); replace with toast

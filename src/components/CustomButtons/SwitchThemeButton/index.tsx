@@ -6,7 +6,7 @@ import { useSession } from "next-auth/react";
 
 import { useSwitchTheme } from "@/hooks/useSwitchTheme";
 
-import { Skeleton } from "@/components/SwitchThemeButton/Skeleton";
+import { Skeleton } from "@/components/CustomButtons/SwitchThemeButton/Skeleton";
 
 import { Button } from "@nextui-org/button";
 
