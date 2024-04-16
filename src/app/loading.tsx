@@ -1,5 +1,9 @@
 import { CircularProgress } from "@nextui-org/progress";
 
 export default function LoadingPage() {
-  return <CircularProgress aria-label="Loading..." size="sm" color="primary" />;
+  return (
+    <main className="w-full h-screen flex items-center justify-center">
+      <CircularProgress aria-label="Loading..." size="sm" color="primary" />;
+    </main>
+  );
 }
