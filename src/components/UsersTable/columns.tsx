@@ -55,7 +55,6 @@ export const columns: ColumnDef<TUser>[] = [
             <DropdownMenuContent className="flex flex-col" align="end">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <DropdownMenuItem
-                className="cursor-pointer"
                 onClick={() => navigator.clipboard.writeText(user.id)}
               >
                 Copy ID
@@ -68,9 +67,7 @@ export const columns: ColumnDef<TUser>[] = [
                   setCurrentDialog("edit");
                 }}
               >
-                <DropdownMenuItem className="cursor-pointer">
-                  Edit
-                </DropdownMenuItem>
+                <DropdownMenuItem>Edit</DropdownMenuItem>
               </DialogTrigger>
 
               <DialogTrigger
@@ -78,9 +75,7 @@ export const columns: ColumnDef<TUser>[] = [
                   setCurrentDialog("delete");
                 }}
               >
-                <DropdownMenuItem className="cursor-pointer">
-                  Delete
-                </DropdownMenuItem>
+                <DropdownMenuItem>Delete</DropdownMenuItem>
               </DialogTrigger>
             </DropdownMenuContent>
           </DropdownMenu>

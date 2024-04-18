@@ -1,6 +1,6 @@
 import { useRouter } from "next/navigation";
 
-import { Button } from "@nextui-org/button";
+import { Button } from "@/components/ui/button";
 
 import { IoChevronBack } from "react-icons/io5";
 
@@ -11,9 +11,9 @@ export const GoBackButton = () => {
 
   return (
     <Button
-      isIconOnly
-      className="dark:text-icondark text-iconlight bg-transparent"
-      radius="full"
+      variant="ghost"
+      className="dark:text-icondark text-iconlight rounded-full"
+      size="icon"
     >
       <IoChevronBack size={iconSize} onClick={() => router.back()} />
     </Button>

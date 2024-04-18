@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 
 import Link from "next/link";
-import { Button } from "@nextui-org/button";
+import { Button } from "@/components/ui/button";
 
 import { MouseEvent } from "react";
 
@@ -24,9 +24,9 @@ export const DashboardButton = () => {
   return (
     <Link href="/dashboard" passHref>
       <Button
-        isIconOnly
-        className="bg-transparent mr-2"
-        radius="full"
+        variant="ghost"
+        className="mr-2 rounded-full"
+        size="icon"
         onClick={handleDashboardClick}
       >
         <MdSpaceDashboard

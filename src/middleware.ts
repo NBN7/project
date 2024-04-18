@@ -11,6 +11,7 @@ export default withAuth({
         // any authenticated user can access home
         return !!token;
       }
+
       // by default do not allow access
       return false;
     },

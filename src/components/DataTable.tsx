@@ -91,7 +91,7 @@ export function DataTable<TData, TValue>({
                 return (
                   <DropdownMenuCheckboxItem
                     key={column.id}
-                    className="capitalize cursor-pointer"
+                    className="capitalize"
                     checked={column.getIsVisible()}
                     onCheckedChange={(value) =>
                       column.toggleVisibility(!!value)
@@ -105,12 +105,12 @@ export function DataTable<TData, TValue>({
         </DropdownMenu>
       </div>
 
-      <div className="rounded-md border dark:border-neutral-700 select-none">
+      <div className="rounded-md border dark:border-neutral-800 select-none">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow
-                className="dark:border-neutral-700"
+                className="dark:border-neutral-800"
                 key={headerGroup.id}
               >
                 {headerGroup.headers.map((header) => {
@@ -133,7 +133,7 @@ export function DataTable<TData, TValue>({
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
-                  className="dark:border-neutral-700"
+                  className="dark:border-neutral-800"
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
                 >
@@ -148,7 +148,7 @@ export function DataTable<TData, TValue>({
                 </TableRow>
               ))
             ) : (
-              <TableRow className="dark:border-neutral-700">
+              <TableRow className="dark:border-neutral-800">
                 <TableCell
                   colSpan={columns.length}
                   className="h-24 text-center"

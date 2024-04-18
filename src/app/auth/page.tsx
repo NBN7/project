@@ -1,22 +1,7 @@
-"use client";
-
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
-
 import { SignInButton } from "@/components/CustomButtons/SignInButton";
 import { Container } from "@/components/Container";
 
 export default function AuthPage() {
-  const { data: session } = useSession();
-  const router = useRouter();
-
-  useEffect(() => {
-    if (session) {
-      router.push("/");
-    }
-  }, [session]);
-
   return (
     <Container sectionClassName="mt-20">
       {/* title */}

@@ -16,7 +16,7 @@ export default function DashboardPage() {
   const { users } = useGetUsers();
 
   return (
-    <Container sectionClassName="mt-2" contentClassName="lg:w-[1000px]">
+    <Container sectionClassName="mt-2">
       <div className="w-full">
         <div className="mb-4">
           <h1 className="font-semibold text-xl">Welcome back, {firstName}</h1>

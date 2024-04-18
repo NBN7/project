@@ -4,18 +4,15 @@ import { useState } from "react";
 
 import { signIn } from "next-auth/react";
 
-import { Button } from "@nextui-org/button";
-
-import { twMerge } from "tailwind-merge";
+import { Button } from "@/components/ui/button";
 
 import { FaGoogle } from "react-icons/fa";
+import { Loader2 } from "lucide-react";
 
-interface SignInButtonProps {
-  className?: string;
-}
-
-export const SignInButton = ({ className }: SignInButtonProps) => {
+export const SignInButton = () => {
   const [isLoading, setIsLoading] = useState(false);
+
+  const iconSize = "18px";
 
   const handleClick = async () => {
     setIsLoading(true);
@@ -26,19 +23,19 @@ export const SignInButton = ({ className }: SignInButtonProps) => {
   };
 
   return (
-    <Button
-      className={twMerge("", className)}
-      variant="bordered"
-      startContent={
-        isLoading ? null : (
-          <FaGoogle size="18px" className="dark:text-icondark text-iconlight" />
-        )
-      }
-      isLoading={isLoading}
-      radius="lg"
-      onClick={handleClick}
-    >
-      Sign In with Google
+    <Button variant="outline" onClick={handleClick}>
+      {isLoading ? (
+        <Loader2
+          size={iconSize}
+          className="mr-2 animate-spin dark:text-icondark text-iconlight"
+        />
+      ) : (
+        <FaGoogle
+          size={iconSize}
+          className="mr-2 dark:text-icondark text-iconlight"
+        />
+      )}
+      <span>Sign In with Google</span>
     </Button>
   );
 };

@@ -6,9 +6,9 @@ import { useSession } from "next-auth/react";
 
 import { useSwitchTheme } from "@/hooks/useSwitchTheme";
 
-import { Skeleton } from "@/components/CustomButtons/SwitchThemeButton/Skeleton";
+import { SwitchThemeButtonSkeleton } from "@/components/CustomButtons/SwitchThemeButton/SwitchThemeButtonSkeleton";
 
-import { Button } from "@nextui-org/button";
+import { Button } from "@/components/ui/button";
 
 import { THEME } from "@/constants/theme";
 import type { TTheme } from "@/types/theme";
@@ -85,14 +85,14 @@ export const SwitchThemeButton = () => {
   }, [session, localTheme]);
 
   if (!themeLoaded) {
-    return <Skeleton />;
+    return <SwitchThemeButtonSkeleton />;
   }
 
   return (
     <Button
-      className="bg-transparent"
-      isIconOnly
-      radius="full"
+      variant="ghost"
+      className="rounded-full"
+      size="icon"
       onClick={toggleTheme}
     >
       {(session ? session.user.theme : localTheme) === THEME.DARK ? (

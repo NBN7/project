@@ -20,7 +20,7 @@ export const Container = ({
     >
       <div
         className={twMerge(
-          "sm:w-[500px] w-full flex flex-col items-center gap-3",
+          "w-full lg:w-[1000px] flex flex-col items-center gap-3",
           contentClassName
         )}
       >

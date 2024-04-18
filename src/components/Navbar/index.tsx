@@ -9,31 +9,23 @@ import { DashboardButton } from "@/components/CustomButtons/DashboardButton";
 import { AuthedClient } from "@/components/Navbar/AuthedClient";
 import { DefaultClient } from "@/components/Navbar/DefaultClient";
 
-import { Navbar, NavbarContent, NavbarItem } from "@nextui-org/navbar";
-
 export const NavbarComponent = () => {
   const { data: session } = useSession();
   const pathname = usePathname();
 
   return (
-    <Navbar className="dark:bg-darkmode bg-lightmode">
-      {pathname !== "/" && <GoBackButton />}
+    <nav className="dark:bg-darkmode bg-lightmode w-full h-16 pr-6 flex items-center justify-center sticky z-50 top-0">
+      <div className="w-full lg:w-[1000px] h-full flex items-center">
+        {pathname !== "/" && <GoBackButton />}
 
-      <NavbarContent className="flex gap-2" justify="end">
-        <NavbarItem>
+        <div className="w-full flex items-center justify-end">
           <SwitchThemeButton />
-        </NavbarItem>
 
-        {session?.user.role === "ADMIN" && (
-          <NavbarItem>
-            <DashboardButton />
-          </NavbarItem>
-        )}
+          {session?.user.role === "ADMIN" && <DashboardButton />}
 
-        <NavbarItem>
           {session ? <AuthedClient session={session} /> : <DefaultClient />}
-        </NavbarItem>
-      </NavbarContent>
-    </Navbar>
+        </div>
+      </div>
+    </nav>
   );
 };
