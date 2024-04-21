@@ -80,7 +80,10 @@ export const columns: ColumnDef<TUser>[] = [
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <DialogContent className="w-11/12 sm:max-w-md">
+          <DialogContent
+            className="w-11/12 sm:max-w-md"
+            onOpenAutoFocus={(e) => e.preventDefault()}
+          >
             {currentDialog === "delete" ? (
               <DeleteDialog id={user.id} />
             ) : currentDialog === "edit" ? (

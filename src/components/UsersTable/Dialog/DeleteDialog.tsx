@@ -48,6 +48,7 @@ export const DeleteDialog = ({ id }: DeleteDialog) => {
       </DialogHeader>
 
       <Input
+        autoComplete="off"
         className="focus-visible:ring-offset-0 focus-visible:ring-0"
         placeholder={`Type "delete" to confirm`}
         onChange={(e) => setValue(e.target.value)}

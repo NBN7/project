@@ -3,6 +3,7 @@
 import { SessionProvider } from "next-auth/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AppProgressBar as ProgressBar } from "next-nprogress-bar";
+import { Toaster } from "@/components/ui/sonner";
 
 const queryClient = new QueryClient();
 
@@ -15,6 +16,7 @@ export const Providers = ({ children }: ProvidersProps) => {
     <SessionProvider>
       <QueryClientProvider client={queryClient}>
         {children}
+        <Toaster />
         <ProgressBar
           height="2px"
           color="#19cfff"

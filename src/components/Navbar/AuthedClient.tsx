@@ -1,5 +1,9 @@
 import { signOut } from "next-auth/react";
 
+import { getUsernameAbbreviation } from "@/utils/getUsernameAbbreviation";
+
+import Link from "next/link";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,13 +23,6 @@ import { BsCurrencyDollar } from "react-icons/bs";
 interface AuthedClientProps {
   session: Session;
 }
-
-const getUsernameAbbreviation = (name: string) => {
-  return name
-    .split(" ")
-    .map((n) => n[0])
-    .join("");
-};
 
 export const AuthedClient = ({ session }: AuthedClientProps) => {
   const userImage = session.user.image as string;
@@ -48,10 +45,13 @@ export const AuthedClient = ({ session }: AuthedClientProps) => {
 
         <DropdownMenuSeparator />
 
-        <DropdownMenuItem>
-          <AiOutlineUser className="mr-2 h-4 w-4" />
-          <span>Profile</span>
-        </DropdownMenuItem>
+        <Link href="/profile">
+          <DropdownMenuItem>
+            <AiOutlineUser className="mr-2 h-4 w-4" />
+            <span>Profile</span>
+          </DropdownMenuItem>
+        </Link>
+
         <DropdownMenuItem>
           <BsCurrencyDollar className="mr-2 h-4 w-4" />
           <span>[App]</span>
