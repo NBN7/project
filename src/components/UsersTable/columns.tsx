@@ -20,7 +20,7 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 import type { TUser } from "@/types/user";
 
-import { toast } from "sonner";
+import { toastCall } from "@/utils/toastCall";
 
 import { IoIosMore } from "react-icons/io";
 
@@ -46,6 +46,8 @@ export const columns: ColumnDef<TUser>[] = [
 
       const handleCopyId = () => {
         navigator.clipboard.writeText(user.id);
+
+        toastCall("ID copied to clipboard");
       };
 
       return (
