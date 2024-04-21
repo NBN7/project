@@ -16,9 +16,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import type { Session } from "next-auth";
 
+import { NAVBAR_ITEMS } from "@/constants/navbarItems";
+
 import { MdLogout } from "react-icons/md";
-import { AiOutlineUser } from "react-icons/ai";
-import { BsCurrencyDollar } from "react-icons/bs";
 
 interface AuthedClientProps {
   session: Session;
@@ -45,22 +45,19 @@ export const AuthedClient = ({ session }: AuthedClientProps) => {
 
         <DropdownMenuSeparator />
 
-        <Link href="/profile">
-          <DropdownMenuItem>
-            <AiOutlineUser className="mr-2 h-4 w-4" />
-            <span>Profile</span>
-          </DropdownMenuItem>
-        </Link>
-
-        <DropdownMenuItem>
-          <BsCurrencyDollar className="mr-2 h-4 w-4" />
-          <span>[App]</span>
-        </DropdownMenuItem>
+        {NAVBAR_ITEMS.map((item) => (
+          <Link key={item.label} href={item.href}>
+            <DropdownMenuItem>
+              <item.icon className="mr-2 size-4" />
+              <span>{item.label}</span>
+            </DropdownMenuItem>
+          </Link>
+        ))}
 
         <DropdownMenuSeparator />
 
         <DropdownMenuItem onClick={() => signOut()}>
-          <MdLogout className="mr-2 h-4 w-4" />
+          <MdLogout className="mr-2 size-4" />
           <span>Log out</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
