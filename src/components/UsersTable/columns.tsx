@@ -20,6 +20,8 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 import type { TUser } from "@/types/user";
 
+import { toast } from "sonner";
+
 import { IoIosMore } from "react-icons/io";
 
 export const columns: ColumnDef<TUser>[] = [
@@ -42,6 +44,10 @@ export const columns: ColumnDef<TUser>[] = [
 
       const [currentDialog, setCurrentDialog] = useState("");
 
+      const handleCopyId = () => {
+        navigator.clipboard.writeText(user.id);
+      };
+
       return (
         <Dialog>
           <DropdownMenu>
@@ -54,9 +60,7 @@ export const columns: ColumnDef<TUser>[] = [
 
             <DropdownMenuContent className="flex flex-col" align="end">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
-              <DropdownMenuItem
-                onClick={() => navigator.clipboard.writeText(user.id)}
-              >
+              <DropdownMenuItem onClick={handleCopyId}>
                 Copy ID
               </DropdownMenuItem>
 

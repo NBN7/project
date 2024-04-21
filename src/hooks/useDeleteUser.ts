@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { deleteUser } from "@/services/deleteUser";
 
-import { toast } from "sonner";
+import { toastCall } from "@/utils/toastCall";
 
 interface UseDeleteUserParams {
   id: string;
@@ -14,11 +14,11 @@ export const useDeleteUser = ({ id }: UseDeleteUserParams) => {
   const { mutate: useDeleteUserMutation } = useMutation({
     mutationFn: () => deleteUser(id),
     onSuccess: () => {
-      toast("User deleted successfully");
+      toastCall("User deleted successfully");
       queryClient.invalidateQueries({ queryKey: ["users"] });
     },
     onError: () => {
-      toast("Error deleting user");
+      toastCall("Error deleting user");
     },
   });
 

@@ -2,9 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 
 import { switchTheme } from "@/services/switchTheme";
 
-import { getCurrentDate } from "@/utils/getCurrentDate";
-
-import { toast } from "sonner";
+import { toastCall } from "@/utils/toastCall";
 
 interface UseSwitchThemeProps {
   id: string;
@@ -12,19 +10,15 @@ interface UseSwitchThemeProps {
 }
 
 export const useSwitchTheme = ({ id, updateSession }: UseSwitchThemeProps) => {
-  const today = getCurrentDate();
-
   const { mutate: useSwitchThemeMutation } = useMutation({
     mutationFn: () => switchTheme(id),
     onSuccess: () => {
       updateSession();
 
-      toast("Theme switched successfully", {
-        description: today,
-      });
+      toastCall("Theme switched successfully");
     },
     onError: () => {
-      console.error("error");
+      toastCall("Error switching theme");
     },
   });
 

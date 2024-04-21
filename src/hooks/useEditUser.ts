@@ -2,9 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { editUser } from "@/services/editUser";
 
-import { getCurrentDate } from "@/utils/getCurrentDate";
-
-import { toast } from "sonner";
+import { toastCall } from "@/utils/toastCall";
 
 interface UseEditUserParams {
   id: string;
@@ -21,20 +19,16 @@ export const useEditUser = ({
 }: UseEditUserParams) => {
   const queryClient = useQueryClient();
 
-  const today = getCurrentDate();
-
   const { mutate: useEditUserMutation } = useMutation({
     mutationFn: () => editUser({ id, name, role }),
     onSuccess: () => {
       updateSession();
 
-      toast("User edited successfully", {
-        description: today,
-      });
+      toastCall("User edited successfully");
       queryClient.invalidateQueries({ queryKey: ["users"] });
     },
     onError: () => {
-      toast("Error editing user");
+      toastCall("Error editing user");
     },
   });
 
