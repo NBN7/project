@@ -74,6 +74,7 @@ export function DataTable<TData, TValue>({
           }
           className="focus-visible:ring-offset-0 focus-visible:ring-0"
           name="filter"
+          autoComplete="off"
         />
 
         <DropdownMenu>

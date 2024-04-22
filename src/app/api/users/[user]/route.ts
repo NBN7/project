@@ -9,6 +9,39 @@ import type { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 
 import { checkUserSession } from "@/utils/checkUserSession";
 
+export async function GET(req: NextRequest, { params }: { params: Params }) {
+  try {
+    const { user } = params;
+
+    const sessionCheck = await checkUserSession(user);
+    if (!sessionCheck.isValid) {
+      return sessionCheck.response;
+    }
+
+    const userData = await prisma.user.findUnique({
+      where: { id: user },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        role: true,
+        theme: true,
+        balance: true,
+      },
+    });
+
+    return NextResponse.json(userData);
+  } catch (error) {
+    if (error instanceof Error) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 }
+    );
+  }
+}
+
 export async function DELETE(req: NextRequest, { params }: { params: Params }) {
   try {
     const { user } = params;

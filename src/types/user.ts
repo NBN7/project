@@ -1,9 +1,11 @@
 export type TUser = {
-  email: string;
   id: string;
-  image: string;
   name: string;
+  email: string;
+  image: string;
   role: string | null;
+  theme: string | null;
+  balance: number | null;
 };
 
 export type TUsersResponse = {

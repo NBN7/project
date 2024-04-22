@@ -7,8 +7,11 @@ export default withAuth({
       if (req.nextUrl.pathname === "/dashboard") {
         // only allow access to "/dashboard" for users with admin role
         return token?.role === "ADMIN";
-      } else if (req.nextUrl.pathname === "/home") {
-        // any authenticated user can access home
+      } else if (
+        req.nextUrl.pathname === "/profile" ||
+        req.nextUrl.pathname === "/application"
+      ) {
+        // any authenticated user can access profile and application pages
         return !!token;
       }
 
@@ -19,4 +22,4 @@ export default withAuth({
 });
 
 // routes that middleware should watch
-export const config = { matcher: ["/dashboard", "/home"] };
+export const config = { matcher: ["/dashboard", "/profile", "/application"] };

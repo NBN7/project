@@ -57,10 +57,12 @@ model User {
   image    String?
   role     String    @default("USER")
   theme    String    @default("LIGHT")
+  balance  Float     @default(0)
   accounts Account[]
   sessions Session[]
 
   // add relations down here
+  transactions Transaction[]
 }
 
 model VerificationToken {
@@ -69,4 +71,14 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Transaction {
+  id          String @id @default(cuid())
+  amount      Float
+  type        String
+  description String @db.VarChar(32)
+  date        String
+  userId      String
+  user        User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
