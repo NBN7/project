@@ -23,7 +23,7 @@ export const useCreateTransaction = ({
 }: CreateTransactionParams) => {
   const queryClient = useQueryClient();
 
-  const { mutate: callCreateTransactionMutation } = useMutation({
+  const { mutate: callCreateTransactionMutation, isPending } = useMutation({
     mutationFn: () =>
       createTransaction({ id, description, type, amount, date }),
     onSuccess: () => {
@@ -35,5 +35,5 @@ export const useCreateTransaction = ({
     },
   });
 
-  return { callCreateTransactionMutation };
+  return { callCreateTransactionMutation, isPending };
 };

@@ -47,7 +47,7 @@ export default function CreatePage() {
   const [amount, setAmount] = useState(0);
   const [date, setDate] = useState<Date | undefined>(new Date());
 
-  const { callCreateTransactionMutation } = useCreateTransaction({
+  const { callCreateTransactionMutation, isPending } = useCreateTransaction({
     id: session?.user?.id as string,
     description,
     type: type,
@@ -147,7 +147,11 @@ export default function CreatePage() {
         <CardFooter>
           <Button
             disabled={
-              description.length === 0 || amount <= 0 || !amount || !date
+              description.length === 0 ||
+              amount <= 0 ||
+              !amount ||
+              !date ||
+              isPending
             }
             className="w-full"
             onClick={handleCreateTransaction}
