@@ -9,7 +9,7 @@ interface TransactionCardProps {
   transaction: Transaction;
 }
 
-export const TransactionCard = ({ transaction }: TransactionCardProps) => {
+const TransactionCard = ({ transaction }: TransactionCardProps) => {
   return (
     <Dialog>
       <DialogTrigger className="w-full">
@@ -39,3 +39,5 @@ export const TransactionCard = ({ transaction }: TransactionCardProps) => {
     </Dialog>
   );
 };
+
+export default TransactionCard;
