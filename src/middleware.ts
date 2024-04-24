@@ -10,7 +10,7 @@ export default withAuth({
       } else if (
         req.nextUrl.pathname === "/profile" ||
         req.nextUrl.pathname === "/application" ||
-        req.nextUrl.pathname === "/api/create"
+        req.nextUrl.pathname === "/create"
       ) {
         // any authenticated user can access profile and application pages
         return !!token;
