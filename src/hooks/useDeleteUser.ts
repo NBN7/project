@@ -11,7 +11,7 @@ interface UseDeleteUserParams {
 export const useDeleteUser = ({ id }: UseDeleteUserParams) => {
   const queryClient = useQueryClient();
 
-  const { mutate: useDeleteUserMutation } = useMutation({
+  const { mutate: callDeleteUserMutation } = useMutation({
     mutationFn: () => deleteUser(id),
     onSuccess: () => {
       toastCall("User deleted successfully");
@@ -22,5 +22,5 @@ export const useDeleteUser = ({ id }: UseDeleteUserParams) => {
     },
   });
 
-  return { useDeleteUserMutation };
+  return { callDeleteUserMutation };
 };

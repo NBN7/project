@@ -77,7 +77,7 @@ model Transaction {
   id          String @id @default(cuid())
   amount      Float
   type        String
-  description String @db.VarChar(32)
+  description String @default("transaction") @db.VarChar(32)
   date        String
   userId      String
   user        User   @relation(fields: [userId], references: [id], onDelete: Cascade)

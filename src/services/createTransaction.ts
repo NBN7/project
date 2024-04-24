@@ -1,3 +1,4 @@
+import { Transaction } from "@/types/transaction";
 import type { TransactionType } from "@/types/transaction";
 
 interface CreateTransactionParams {
@@ -14,12 +15,12 @@ export const createTransaction = async ({
   type,
   amount,
   date,
-}: CreateTransactionParams) => {
+}: CreateTransactionParams): Promise<Transaction> => {
   const response = await fetch(`/api/users/${id}/transactions`, {
     method: "POST",
     body: JSON.stringify({ description, type, amount, date }),
   });
-  const data = response.json();
+  const data: Transaction = await response.json();
 
   return data;
 };

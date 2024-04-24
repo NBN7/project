@@ -4,8 +4,8 @@ import { useState } from "react";
 
 import { ColumnDef } from "@tanstack/react-table";
 
-import { EditDialog } from "@/components/UsersTable/Dialog/EditDialog";
-import { DeleteDialog } from "@/components/UsersTable/Dialog/DeleteDialog";
+import { EditUserDialog } from "@/components/UsersTable/Dialog/EditUserDialog";
+import { DeleteUserDialog } from "@/components/UsersTable/Dialog/DeleteUserDialog";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -91,9 +91,9 @@ export const columns: ColumnDef<TUser>[] = [
             onOpenAutoFocus={(e) => e.preventDefault()}
           >
             {currentDialog === "delete" ? (
-              <DeleteDialog id={user.id} />
+              <DeleteUserDialog id={user.id} />
             ) : currentDialog === "edit" ? (
-              <EditDialog user={user} />
+              <EditUserDialog user={user} />
             ) : null}
           </DialogContent>
         </Dialog>

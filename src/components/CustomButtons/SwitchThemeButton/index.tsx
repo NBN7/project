@@ -41,7 +41,7 @@ export const SwitchThemeButton = () => {
   };
 
   // custom hook to switch the theme
-  const { useSwitchThemeMutation } = useSwitchTheme({
+  const { callSwitchThemeMutation } = useSwitchTheme({
     id: session?.user?.id as string,
     updateSession,
   });
@@ -65,7 +65,7 @@ export const SwitchThemeButton = () => {
 
     // if the user is logged in, update the theme in the database
     if (session?.user) {
-      useSwitchThemeMutation();
+      callSwitchThemeMutation();
       return;
     }
 

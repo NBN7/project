@@ -14,18 +14,18 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-interface DeleteDialog {
+interface DeleteUserDialogProps {
   id: string;
 }
 
-export const DeleteDialog = ({ id }: DeleteDialog) => {
+export const DeleteUserDialog = ({ id }: DeleteUserDialogProps) => {
   const [value, setValue] = useState("");
   const [isError, setIsError] = useState(false);
 
-  const { useDeleteUserMutation } = useDeleteUser({ id });
+  const { callDeleteUserMutation } = useDeleteUser({ id });
 
   const handleDeleteClick = () => {
-    useDeleteUserMutation();
+    callDeleteUserMutation();
   };
 
   useEffect(() => {

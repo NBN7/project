@@ -47,7 +47,7 @@ export default function CreatePage() {
   const [amount, setAmount] = useState(0);
   const [date, setDate] = useState<Date | undefined>(new Date());
 
-  const { useCreateTransactionMutation } = useCreateTransaction({
+  const { callCreateTransactionMutation } = useCreateTransaction({
     id: session?.user?.id as string,
     description,
     type: type,
@@ -66,7 +66,7 @@ export default function CreatePage() {
   };
 
   const handleCreateTransaction = () => {
-    useCreateTransactionMutation();
+    callCreateTransactionMutation();
   };
 
   return (

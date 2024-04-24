@@ -27,7 +27,11 @@ import { ROLES } from "@/constants/roles";
 
 import type { TUser } from "@/types/user";
 
-export const EditDialog = ({ user }: { user: TUser }) => {
+interface EditUserDialogProps {
+  user: TUser;
+}
+
+export const EditUserDialog = ({ user }: EditUserDialogProps) => {
   const [name, setName] = useState(user.name);
   const [role, setRole] = useState(user.role);
 
@@ -36,6 +40,7 @@ export const EditDialog = ({ user }: { user: TUser }) => {
 
   const { data: session, update } = useSession();
 
+  // fn to update the session we get from useSession
   const updateSession = async () => {
     await update({
       ...session,
@@ -46,21 +51,19 @@ export const EditDialog = ({ user }: { user: TUser }) => {
     });
   };
 
-  const { useEditUserMutation } = useEditUser({
+  const { callEditUserMutation } = useEditUser({
     id: user.id as string,
     name,
     role,
     updateSession,
   });
 
-  // fn to update the session we get from useSession
-
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
   };
 
   const handleSaveChanges = () => {
-    useEditUserMutation();
+    callEditUserMutation();
   };
 
   useEffect(() => {

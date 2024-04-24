@@ -19,7 +19,7 @@ export const useEditUser = ({
 }: UseEditUserParams) => {
   const queryClient = useQueryClient();
 
-  const { mutate: useEditUserMutation } = useMutation({
+  const { mutate: callEditUserMutation } = useMutation({
     mutationFn: () => editUser({ id, name, role }),
     onSuccess: () => {
       updateSession();
@@ -32,5 +32,5 @@ export const useEditUser = ({
     },
   });
 
-  return { useEditUserMutation };
+  return { callEditUserMutation };
 };

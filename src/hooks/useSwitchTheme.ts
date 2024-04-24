@@ -10,7 +10,7 @@ interface UseSwitchThemeProps {
 }
 
 export const useSwitchTheme = ({ id, updateSession }: UseSwitchThemeProps) => {
-  const { mutate: useSwitchThemeMutation } = useMutation({
+  const { mutate: callSwitchThemeMutation } = useMutation({
     mutationFn: () => switchTheme(id),
     onSuccess: () => {
       updateSession();
@@ -22,5 +22,5 @@ export const useSwitchTheme = ({ id, updateSession }: UseSwitchThemeProps) => {
     },
   });
 
-  return { useSwitchThemeMutation };
+  return { callSwitchThemeMutation };
 };
