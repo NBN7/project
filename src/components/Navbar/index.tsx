@@ -3,9 +3,11 @@
 import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 
-import { GoBackButton } from "../CustomButtons/GoBackButton";
-import { SwitchThemeButton } from "@/components/CustomButtons/SwitchThemeButton";
-import { DashboardButton } from "@/components/CustomButtons/DashboardButton";
+import {
+  GoBackButton,
+  SwitchThemeButton,
+  DashboardButton,
+} from "@/components/CustomButtons";
 import { AuthedClient } from "@/components/Navbar/AuthedClient";
 import { DefaultClient } from "@/components/Navbar/DefaultClient";
 

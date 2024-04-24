@@ -1,4 +1,4 @@
-import { SignInButton } from "@/components/CustomButtons/SignInButton";
+import { SignInButton } from "@/components/CustomButtons";
 import { Container } from "@/components/Container";
 
 export default function AuthPage() {

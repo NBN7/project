@@ -1,8 +1,7 @@
 "use client";
 
 import { Container } from "@/components/Container";
-import { GetStartedButton } from "@/components/CustomButtons/GetStartedButton";
-import { GithubButton } from "@/components/CustomButtons/GithubButton";
+import { GetStartedButton, GithubButton } from "@/components/CustomButtons";
 
 export default function HomePage() {
   return (
