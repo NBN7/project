@@ -4,14 +4,14 @@ import { FiPlus } from "react-icons/fi";
 
 export const NAVBAR_ITEMS = [
   {
-    label: "Create",
-    icon: FiPlus,
-    href: "/create",
-  },
-  {
     label: "[App]",
     icon: BsCurrencyDollar,
     href: "/application",
+  },
+  {
+    label: "Create",
+    icon: FiPlus,
+    href: "/create",
   },
   {
     label: "Profile",

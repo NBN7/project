@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import { useDeleteUser } from "@/hooks/useDeleteUser";
 
@@ -19,23 +19,13 @@ interface DeleteUserDialogProps {
 }
 
 export const DeleteUserDialog = ({ id }: DeleteUserDialogProps) => {
-  const [value, setValue] = useState("");
-  const [isError, setIsError] = useState(false);
+  const [confirm, setConfirm] = useState("");
 
   const { callDeleteUserMutation } = useDeleteUser({ id });
 
   const handleDeleteClick = () => {
     callDeleteUserMutation();
   };
-
-  useEffect(() => {
-    if (value.toLowerCase() !== "delete") {
-      setIsError(true);
-      return;
-    }
-
-    setIsError(false);
-  }, [value]);
 
   return (
     <>
@@ -51,14 +41,14 @@ export const DeleteUserDialog = ({ id }: DeleteUserDialogProps) => {
         autoComplete="off"
         className="focus-visible:ring-offset-0 focus-visible:ring-0"
         placeholder={`Type "delete" to confirm`}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={(e) => setConfirm(e.target.value.toLowerCase())}
         name="confirm"
       />
 
       <DialogFooter>
         <DialogClose asChild>
           <Button
-            disabled={value.length === 0 || isError}
+            disabled={!confirm.length || confirm !== "delete"}
             className="w-full"
             onClick={handleDeleteClick}
           >

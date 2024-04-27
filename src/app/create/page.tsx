@@ -71,7 +71,7 @@ export default function CreatePage() {
 
   return (
     <Container sectionClassName="mt-10">
-      <Card className="sm:w-1/2 w-full">
+      <Card className="w-full">
         <CardHeader>
           <CardTitle>New transaction</CardTitle>
           <CardDescription>
@@ -83,7 +83,7 @@ export default function CreatePage() {
           <div className="flex flex-col gap-2">
             <Input
               maxLength={32}
-              className="focus-visible:ring-offset-0 focus-visible:ring-0"
+              className="sm:w-1/2 focus-visible:ring-offset-0 focus-visible:ring-0"
               placeholder="Description"
               name="description"
               autoComplete="off"
@@ -111,7 +111,7 @@ export default function CreatePage() {
             </Select>
 
             <Input
-              className="focus-visible:ring-offset-0 focus-visible:ring-0"
+              className="sm:w-1/2 focus-visible:ring-offset-0 focus-visible:ring-0"
               placeholder="Amount"
               name="amount"
               type="number"

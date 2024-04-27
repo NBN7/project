@@ -23,6 +23,8 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
       select: {
         id: true,
         name: true,
+        description: true,
+        image: true,
         email: true,
         role: true,
         theme: true,
@@ -74,43 +76,40 @@ export async function DELETE(req: NextRequest, { params }: { params: Params }) {
   }
 }
 
+type UpdateUserData = {
+  name?: string;
+  description?: string;
+  role?: string;
+};
+
 export async function PATCH(req: NextRequest, { params }: { params: Params }) {
   const session = await getServerSession(authOptions);
 
   const { user } = params;
-  const { name, role } = await req.json();
+  const data = await req.json();
 
   try {
-    // if the user is not an admin they can only update their own name
-    if (session?.user.role !== "ADMIN") {
-      const sessionCheck = await checkUserSession(user);
-      if (!sessionCheck.isValid) {
-        return sessionCheck.response;
-      }
-
-      const updatedUser = await prisma.user.update({
-        where: { id: user },
-        data: { name },
-      });
-
-      return NextResponse.json(updatedUser);
-    }
-
-    // if the user is an admin they can update any user's name and role
-    if (!session || session?.user.role !== "ADMIN") {
+    if (!session) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const userExists = await prisma.user.findUnique({
       where: { id: user },
     });
+
     if (!userExists) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
+    let updateData: UpdateUserData = {};
+
+    if (data.name) updateData.name = data.name;
+    if (data.description) updateData.description = data.description;
+    if (session.user.role === "ADMIN" && data.role) updateData.role = data.role;
+
     const updatedUser = await prisma.user.update({
       where: { id: user },
-      data: { name, role },
+      data: updateData,
     });
 
     return NextResponse.json(updatedUser);

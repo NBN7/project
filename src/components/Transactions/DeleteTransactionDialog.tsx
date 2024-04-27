@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import { useSession } from "next-auth/react";
 
@@ -21,8 +21,7 @@ interface DeleteDialog {
 }
 
 export const DeleteTransactionDialog = ({ id }: DeleteDialog) => {
-  const [value, setValue] = useState("");
-  const [isError, setIsError] = useState(false);
+  const [confirm, setConfirm] = useState("");
 
   const { data: session } = useSession();
 
@@ -34,15 +33,6 @@ export const DeleteTransactionDialog = ({ id }: DeleteDialog) => {
   const handleDeleteClick = () => {
     callDeleteTransactionMutation();
   };
-
-  useEffect(() => {
-    if (value.toLowerCase() !== "delete") {
-      setIsError(true);
-      return;
-    }
-
-    setIsError(false);
-  }, [value]);
 
   return (
     <>
@@ -58,14 +48,14 @@ export const DeleteTransactionDialog = ({ id }: DeleteDialog) => {
         autoComplete="off"
         className="focus-visible:ring-offset-0 focus-visible:ring-0"
         placeholder={`Type "delete" to confirm`}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={(e) => setConfirm(e.target.value.toLowerCase())}
         name="confirm"
       />
 
       <DialogFooter>
         <DialogClose asChild>
           <Button
-            disabled={value.length === 0 || isError}
+            disabled={!confirm.length || confirm !== "delete"}
             className="w-full"
             onClick={handleDeleteClick}
           >

@@ -7,7 +7,7 @@ export default function HomePage() {
   return (
     <main>
       <Container sectionClassName="mt-20">
-        <div className="w-full flex flex-col gap-6 text-center items-center">
+        <div className="w-full flex flex-col gap-2 text-center items-center">
           {/* title */}
           <h1 className="text-4xl font-semibold text-pretty">
             <span className="from-[#0070F0] to-[#19cfff] bg-clip-text text-transparent bg-gradient-to-b">
@@ -22,7 +22,7 @@ export default function HomePage() {
           </p>
 
           {/* buttons */}
-          <div className="w-full flex flex-col justify-center sm:flex-row gap-2">
+          <div className="w-full flex flex-col justify-center sm:flex-row gap-2 p-4">
             <GetStartedButton />
             <GithubButton />
           </div>

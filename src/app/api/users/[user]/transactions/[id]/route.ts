@@ -48,10 +48,10 @@ export async function DELETE(req: NextRequest, { params }: { params: Params }) {
   try {
     const { user, id } = params;
 
-    // const sessionCheck = await checkUserSession(user);
-    // if (!sessionCheck.isValid) {
-    //   return sessionCheck.response;
-    // }
+    const sessionCheck = await checkUserSession(user);
+    if (!sessionCheck.isValid) {
+      return sessionCheck.response;
+    }
 
     const userExists = await prisma.user.findUnique({
       where: { id: user },

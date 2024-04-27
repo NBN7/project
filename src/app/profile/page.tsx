@@ -2,37 +2,54 @@
 
 import { useSession } from "next-auth/react";
 
+import { useGetUser } from "@/hooks/useGetUser";
+
 import { getUsernameAbbreviation } from "@/utils/getUsernameAbbreviation";
 
 import { Container } from "@/components/Container";
+import { MonthlyChartCard } from "@/components/MonthlyChartCard";
+import { EditProfileDialog } from "@/components/Profile/EditProfileDialog";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 
 export default function ProfilePage() {
   const { data: session } = useSession();
 
-  const userImage = session?.user.image as string;
+  const { data: user } = useGetUser(session?.user.id as string);
 
   return (
-    <Container sectionClassName="mt-20">
-      {/* <div className="dark:bg-white bg-black absolute w-[1000px] h-52 top-0"></div> */}
-      <div className="w-full">
-        <Avatar className="size-28 border-2 border-black">
-          <AvatarImage src={userImage} alt={session?.user.name as string} />
-          <AvatarFallback>
-            {getUsernameAbbreviation(session?.user.name ?? "")}
-          </AvatarFallback>
-        </Avatar>
+    <Container sectionClassName="mt-20 mb-10">
+      <Dialog>
+        <div className="w-full">
+          <div className="w-full flex items-center justify-between">
+            <Avatar className="size-28 border-2 border-black">
+              <AvatarImage src={user?.image} alt={user?.name} />
+              <AvatarFallback>
+                {getUsernameAbbreviation(user?.name ?? "")}
+              </AvatarFallback>
+            </Avatar>
 
-        <h2 className="mt-6 font-semibold text-xl">{session?.user.name}</h2>
-        <p className="dark:text-greydark text-greylight md:w-[70%]">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit, qui autem.
-        </p>
+            <DialogTrigger asChild className="self-end">
+              <Button variant="outline">Edit profile</Button>
+            </DialogTrigger>
+          </div>
 
-        <div className="mt-10">
-          <p className="font-semibold">Recent Activity</p>
+          <h2 className="mt-6 font-semibold text-xl">{user?.name}</h2>
+          <p className="dark:text-greydark text-greylight md:w-[70%]">
+            {user?.description}
+          </p>
+
+          <MonthlyChartCard id={session?.user.id as string} />
         </div>
-      </div>
+
+        <EditProfileDialog
+          id={session?.user.id as string}
+          name={user?.name as string}
+          description={user?.description as string}
+        />
+      </Dialog>
     </Container>
   );
 }

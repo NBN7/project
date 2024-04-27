@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
+
 import { useSession } from "next-auth/react";
 
 import { useEditUser } from "@/hooks/useEditUser";
@@ -35,8 +36,7 @@ export const EditUserDialog = ({ user }: EditUserDialogProps) => {
   const [name, setName] = useState(user.name);
   const [role, setRole] = useState(user.role);
 
-  const [value, setValue] = useState("");
-  const [isError, setIsError] = useState(false);
+  const [confirm, setConfirm] = useState("");
 
   const { data: session, update } = useSession();
 
@@ -58,22 +58,9 @@ export const EditUserDialog = ({ user }: EditUserDialogProps) => {
     updateSession,
   });
 
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
-  };
-
   const handleSaveChanges = () => {
     callEditUserMutation();
   };
-
-  useEffect(() => {
-    if (value.toLowerCase() !== "edit") {
-      setIsError(true);
-      return;
-    }
-
-    setIsError(false);
-  }, [value]);
 
   return (
     <>
@@ -91,7 +78,7 @@ export const EditUserDialog = ({ user }: EditUserDialogProps) => {
           placeholder="Name"
           defaultValue={user.name}
           name="name"
-          onChange={handleNameChange}
+          onChange={(e) => setName(e.target.value)}
         />
 
         <Select
@@ -117,7 +104,7 @@ export const EditUserDialog = ({ user }: EditUserDialogProps) => {
           autoComplete="off"
           className="focus-visible:ring-offset-0 focus-visible:ring-0"
           placeholder={`Type "edit" to confirm`}
-          onChange={(e) => setValue(e.target.value)}
+          onChange={(e) => setConfirm(e.target.value.toLowerCase())}
           name="confirm"
         />
       </div>
@@ -125,7 +112,12 @@ export const EditUserDialog = ({ user }: EditUserDialogProps) => {
       <DialogFooter>
         <DialogClose asChild>
           <Button
-            disabled={value.length === 0 || isError}
+            disabled={
+              !confirm.length ||
+              !name ||
+              (name === user.name && role === user.role) ||
+              confirm !== "edit"
+            }
             className="w-full"
             onClick={handleSaveChanges}
           >

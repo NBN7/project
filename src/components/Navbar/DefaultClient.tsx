@@ -1,5 +1,9 @@
 import { LinkUI } from "@/components/LinkUI";
 
 export const DefaultClient = () => {
-  return <LinkUI href="/auth">Sign In</LinkUI>;
+  return (
+    <LinkUI className="ml-2" href="/auth">
+      Sign In
+    </LinkUI>
+  );
 };

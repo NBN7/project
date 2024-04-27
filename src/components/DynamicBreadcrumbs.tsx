@@ -2,8 +2,6 @@
 
 import { usePathname } from "next/navigation";
 
-import { capitalize } from "@/utils/capitalize";
-
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -38,7 +36,7 @@ export const DynamicBreadcrumbs = () => {
 
         {pathnames.map((path) => (
           <BreadcrumbItem key={path}>
-            <BreadcrumbPage>{capitalize(path)}</BreadcrumbPage>
+            <BreadcrumbPage className="capitalize">{path}</BreadcrumbPage>
           </BreadcrumbItem>
         ))}
       </BreadcrumbList>

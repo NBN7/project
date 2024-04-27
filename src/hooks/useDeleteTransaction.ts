@@ -18,9 +18,9 @@ export const useDeleteTransaction = ({
   const { mutate: callDeleteTransactionMutation } = useMutation({
     mutationFn: () => deleteTransaction(userId, transactionId),
     onSuccess: () => {
+      toastCall("Transaction deleted successfully");
       queryClient.invalidateQueries({ queryKey: ["transactions"] });
       queryClient.invalidateQueries({ queryKey: ["user"] });
-      toastCall("Transaction deleted successfully");
     },
     onError: () => {
       toastCall("Error deleting transaction");

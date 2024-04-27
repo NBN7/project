@@ -1,10 +1,10 @@
 "use client";
 
 import { useSession } from "next-auth/react";
+
 import { useGetUsers } from "@/hooks/useGetUsers";
 
 import { Container } from "@/components/Container";
-
 import { UsersTable } from "@/components/UsersTable";
 
 import { getFirstName } from "@/utils/getFirsName";
