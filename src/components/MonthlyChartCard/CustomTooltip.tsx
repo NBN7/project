@@ -25,7 +25,7 @@ export const CustomTooltip = <
 }: CustomTooltipProps<TValue, TName>) => {
   if (active && payload && payload.length) {
     return (
-      <div className="bg-white dark:bg-black p-2 rounded shadow-md">
+      <div className="bg-white dark:bg-black p-2 rounded shadow-md dark:shadow-[#222222]">
         <p className="text-lg">{label}</p>
         {payload.map((entry, index) => (
           <p key={index} className="text-sm" style={{ color: entry.color }}>
