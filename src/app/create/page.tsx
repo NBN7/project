@@ -55,18 +55,12 @@ export default function CreatePage() {
     date: date || new Date(),
   });
 
-  const handleDescriptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value;
-    setDescription(newValue);
-  };
+  const handleCreateTransaction = async () => {
+    await callCreateTransactionMutation();
 
-  const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = parseFloat(e.target.value);
-    setAmount(newValue);
-  };
-
-  const handleCreateTransaction = () => {
-    callCreateTransactionMutation();
+    setDescription("");
+    setAmount(0);
+    setDate(new Date());
   };
 
   return (
@@ -82,12 +76,13 @@ export default function CreatePage() {
         <CardContent>
           <div className="flex flex-col gap-2">
             <Input
+              value={description}
               maxLength={32}
               className="sm:w-1/2 focus-visible:ring-offset-0 focus-visible:ring-0"
               placeholder="Description"
               name="description"
               autoComplete="off"
-              onChange={handleDescriptionChange}
+              onChange={(e) => setDescription(e.target.value)}
             />
 
             <Select
@@ -111,11 +106,12 @@ export default function CreatePage() {
             </Select>
 
             <Input
+              value={!amount ? "" : amount}
               className="sm:w-1/2 focus-visible:ring-offset-0 focus-visible:ring-0"
               placeholder="Amount"
               name="amount"
               type="number"
-              onChange={handleAmountChange}
+              onChange={(e) => setAmount(parseFloat(e.target.value))}
             />
 
             <Popover>
@@ -147,7 +143,8 @@ export default function CreatePage() {
         <CardFooter>
           <Button
             disabled={
-              description.length === 0 ||
+              !description.length ||
+              !type ||
               amount <= 0 ||
               !amount ||
               !date ||
