@@ -54,7 +54,8 @@ export const EditProfileDialog = ({
       <DialogHeader>
         <DialogTitle>Edit profile</DialogTitle>
         <DialogDescription>
-          Edit your profile by filling out the form below.
+          Make changes to your profile here. Click save changes when you're
+          done.
         </DialogDescription>
       </DialogHeader>
 
@@ -97,7 +98,7 @@ export const EditProfileDialog = ({
             className="w-full"
             onClick={handleEditProfile}
           >
-            Edit profile
+            Save changes
           </Button>
         </DialogClose>
       </DialogFooter>
