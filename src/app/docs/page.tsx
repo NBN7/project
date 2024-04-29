@@ -13,8 +13,18 @@ import {
 import { Button } from "@/components/ui/button";
 
 import { FAQ } from "@/constants/faq";
+import type { TFaq } from "@/types/faq";
 
 import { IoChevronForward } from "react-icons/io5";
+
+const renderFAQ = (faq: TFaq) => {
+  return (
+    <AccordionItem key={faq.item} value={faq.item}>
+      <AccordionTrigger>{faq.question}</AccordionTrigger>
+      <AccordionContent>{faq.answer}</AccordionContent>
+    </AccordionItem>
+  );
+};
 
 export default function DocsPage() {
   return (
@@ -23,7 +33,7 @@ export default function DocsPage() {
         <DynamicBreadcrumbs />
 
         <article className="w-full mt-5">
-          <div className="space-y-2 mb-5">
+          <div className="space-y-2 mb-10">
             <h1 className="text-4xl font-semibold">Introduction</h1>
             <p className="dark:text-greydark text-greylight ">
               Take control of your finances. Our app helps you manage your money
@@ -49,25 +59,20 @@ export default function DocsPage() {
             </p>
           </div>
 
-          <h2 className="text-xl font-semibold">FAQ</h2>
+          <h2 className="text-lg font-semibold">FAQ</h2>
           <Accordion type="single" collapsible className="w-full mb-10">
-            {FAQ.map((faq) => (
-              <AccordionItem key={faq.item} value={faq.item}>
-                <AccordionTrigger>{faq.question}</AccordionTrigger>
-                <AccordionContent>{faq.answer}</AccordionContent>
-              </AccordionItem>
-            ))}
+            {FAQ.map(renderFAQ)}
           </Accordion>
-
-          <div className="w-full flex justify-end">
-            <Link href="/docs/usage">
-              <Button variant="outline">
-                <span>Usage</span>
-                <IoChevronForward className="ml-2" />
-              </Button>
-            </Link>
-          </div>
         </article>
+
+        <div className="w-full flex justify-end">
+          <Link href="/docs/usage">
+            <Button variant="outline">
+              <span>Usage</span>
+              <IoChevronForward className="ml-2" />
+            </Button>
+          </Link>
+        </div>
       </div>
     </Container>
   );

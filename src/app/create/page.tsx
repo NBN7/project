@@ -35,9 +35,8 @@ import { Button } from "@/components/ui/button";
 
 import { CalendarIcon } from "lucide-react";
 
-const TRANSACTION_TYPES = ["Income", "Expense"];
-
 import type { TransactionType } from "@/types/transaction";
+const TRANSACTION_TYPES: TransactionType[] = ["income", "expense"];
 
 export default function CreatePage() {
   const { data: session } = useSession();
@@ -97,7 +96,11 @@ export default function CreatePage() {
               <SelectContent>
                 <SelectGroup>
                   {TRANSACTION_TYPES.map((transaction, index) => (
-                    <SelectItem key={index} value={transaction}>
+                    <SelectItem
+                      className="capitalize"
+                      key={index}
+                      value={transaction}
+                    >
                       {transaction}
                     </SelectItem>
                   ))}

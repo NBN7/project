@@ -4,8 +4,9 @@ import "./globals.css";
 import "@fontsource/onest";
 
 export const metadata: Metadata = {
-  title: "App",
-  description: "Default description",
+  title: "Savings App",
+  description:
+    "Take control of your finances. Our app helps you manage your money smartly, easily, and quickly. Start saving and reach your financial goals today.",
 };
 
 import { Providers } from "./Providers";

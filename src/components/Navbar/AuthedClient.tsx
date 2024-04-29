@@ -17,8 +17,18 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import type { Session } from "next-auth";
 
 import { NAVBAR_ITEMS } from "@/constants/navbarItems";
+import type { TNavbarItem } from "@/types/navbarItems";
 
 import { MdLogout } from "react-icons/md";
+
+const renderNavbarItems = (navbarItem: TNavbarItem) => (
+  <Link key={navbarItem.label} href={navbarItem.href}>
+    <DropdownMenuItem>
+      <navbarItem.icon className="mr-2 size-4" />
+      <span>{navbarItem.label}</span>
+    </DropdownMenuItem>
+  </Link>
+);
 
 interface AuthedClientProps {
   session: Session;
@@ -45,14 +55,7 @@ export const AuthedClient = ({ session }: AuthedClientProps) => {
 
         <DropdownMenuSeparator />
 
-        {NAVBAR_ITEMS.map((item) => (
-          <Link key={item.label} href={item.href}>
-            <DropdownMenuItem>
-              <item.icon className="mr-2 size-4" />
-              <span>{item.label}</span>
-            </DropdownMenuItem>
-          </Link>
-        ))}
+        {NAVBAR_ITEMS.map(renderNavbarItems)}
 
         <DropdownMenuSeparator />
 

@@ -10,6 +10,14 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 
+const renderPathnmaes = (path: string) => {
+  return (
+    <BreadcrumbItem key={path}>
+      <BreadcrumbPage className="capitalize">{path}</BreadcrumbPage>
+    </BreadcrumbItem>
+  );
+};
+
 export const DynamicBreadcrumbs = () => {
   const pathname = usePathname();
 
@@ -34,11 +42,7 @@ export const DynamicBreadcrumbs = () => {
           </BreadcrumbItem>
         )}
 
-        {pathnames.map((path) => (
-          <BreadcrumbItem key={path}>
-            <BreadcrumbPage className="capitalize">{path}</BreadcrumbPage>
-          </BreadcrumbItem>
-        ))}
+        {pathnames.map(renderPathnmaes)}
       </BreadcrumbList>
     </Breadcrumb>
   );
