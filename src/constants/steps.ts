@@ -19,8 +19,8 @@ export const STEPS: TSteps = {
       step: "Create a transaction",
       content: [
         {
-          title: "Navigate to the 'Create' section:",
-          description: "Once logged in, go to the 'Create'.",
+          title: 'Navigate to the "Create" section:',
+          description: 'Once logged in, go to "Create".',
         },
         {
           title: "Enter transaction details:",
@@ -30,7 +30,7 @@ export const STEPS: TSteps = {
         {
           title: "Save the transaction:",
           description:
-            "Review the details and confirm by clicking 'Create transaction' to add it to your account.",
+            'Review the details and confirm by clicking "Create transaction" to add it to your account.',
         },
       ],
     },
@@ -38,7 +38,7 @@ export const STEPS: TSteps = {
       step: "View your finances",
       content: [
         {
-          title: "Go to the 'Application' section:",
+          title: 'Go to the "Application" section:',
           description:
             "Here, you can view your overall balance and all past transactions.",
         },
@@ -53,7 +53,7 @@ export const STEPS: TSteps = {
       step: "Analyze Monthly Expenses",
       content: [
         {
-          title: "Visit the 'Profile' section:",
+          title: 'Visit the "Profile" section:',
           description:
             "Access graphs and charts that visualize your spending habits over the month.",
         },
