@@ -4,26 +4,27 @@ import { BsCurrencyDollar } from "react-icons/bs";
 import { FiPlus } from "react-icons/fi";
 
 import type { TNavbarItem } from "@/types/navbarItems";
+import { ROUTES } from "@/constants/routes";
 
 export const NAVBAR_ITEMS: TNavbarItem[] = [
   {
     label: "Home",
     icon: RiHome2Line,
-    href: "/",
+    href: ROUTES.HOME,
   },
   {
     label: "[App]",
     icon: BsCurrencyDollar,
-    href: "/application",
+    href: ROUTES.TRANSACTIONS.ROOT,
   },
   {
     label: "Create",
     icon: FiPlus,
-    href: "/create",
+    href: ROUTES.TRANSACTIONS.CREATE,
   },
   {
     label: "Profile",
     icon: AiOutlineUser,
-    href: "/profile",
+    href: ROUTES.PROFILE,
   },
 ];

@@ -1,11 +1,13 @@
 "use client";
 
+import { MouseEvent } from "react";
+
 import { usePathname } from "next/navigation";
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
-import { MouseEvent } from "react";
+import { ROUTES } from "@/constants/routes";
 
 import { MdSpaceDashboard } from "react-icons/md";
 
@@ -22,7 +24,7 @@ export const DashboardButton = () => {
   const iconSize = "20px";
 
   return (
-    <Link href="/dashboard" passHref>
+    <Link href={ROUTES.DASHBOARD} passHref>
       <Button
         variant="ghost"
         className="mr-2 rounded-full"

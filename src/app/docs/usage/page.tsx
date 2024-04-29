@@ -5,10 +5,11 @@ import { DynamicBreadcrumbs } from "@/components/DynamicBreadcrumbs";
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Gradient } from "@/components/Gradient";
 
 import { STEPS } from "@/constants/steps";
 import { TStep, TStepContent } from "@/types/steps";
+
+import { ROUTES } from "@/constants/routes";
 
 import { IoChevronBack } from "react-icons/io5";
 
@@ -60,7 +61,7 @@ export default function UsagePage() {
         </article>
 
         <div className="w-full flex justify-start">
-          <Link href="/docs">
+          <Link href={ROUTES.DOCS.INTRODUCTION}>
             <Button variant="outline">
               <IoChevronBack className="mr-2" />
               <span>Introduction</span>

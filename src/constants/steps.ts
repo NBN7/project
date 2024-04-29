@@ -1,6 +1,6 @@
 import { TSteps } from "@/types/steps";
 
-export const STEPS: TSteps = {
+export const STEPS: TSteps = Object.freeze({
   steps: [
     {
       step: "Registration",
@@ -65,4 +65,4 @@ export const STEPS: TSteps = {
       ],
     },
   ],
-};
+} as const);

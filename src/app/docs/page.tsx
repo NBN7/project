@@ -15,6 +15,8 @@ import { Button } from "@/components/ui/button";
 import { FAQ } from "@/constants/faq";
 import type { TFaq } from "@/types/faq";
 
+import { ROUTES } from "@/constants/routes";
+
 import { IoChevronForward } from "react-icons/io5";
 
 const renderFAQ = (faq: TFaq) => {
@@ -66,7 +68,7 @@ export default function DocsPage() {
         </article>
 
         <div className="w-full flex justify-end">
-          <Link href="/docs/usage">
+          <Link href={ROUTES.DOCS.USAGE}>
             <Button variant="outline">
               <span>Usage</span>
               <IoChevronForward className="ml-2" />
