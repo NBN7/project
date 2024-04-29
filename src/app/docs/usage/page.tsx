@@ -32,7 +32,7 @@ const renderSteps = (step: TStep, index: number) => {
 
       <ul>{step.content.map(renderStepsContent)}</ul>
 
-      <Separator className="my-4" />
+      <Separator className="sm:my-6 my-4" />
     </li>
   );
 };
@@ -49,8 +49,8 @@ export default function UsagePage() {
             <p className="dark:text-greydark text-greylight ">
               Get started with our intuitive interface. Our app allows you to
               track your expenses, and view detailed financial reports all in
-              one place. Keep an eye on your daily spendings. Use it
-              anytime, anywhere to maintain control over your financial health.
+              one place. Keep an eye on your daily spendings. Use it anytime,
+              anywhere to maintain control over your financial health.
             </p>
           </div>
 
