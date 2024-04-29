@@ -1,3 +1,4 @@
+import { RiHome2Line } from "react-icons/ri";
 import { AiOutlineUser } from "react-icons/ai";
 import { BsCurrencyDollar } from "react-icons/bs";
 import { FiPlus } from "react-icons/fi";
@@ -5,6 +6,11 @@ import { FiPlus } from "react-icons/fi";
 import type { TNavbarItem } from "@/types/navbarItems";
 
 export const NAVBAR_ITEMS: TNavbarItem[] = [
+  {
+    label: "Home",
+    icon: RiHome2Line,
+    href: "/",
+  },
   {
     label: "[App]",
     icon: BsCurrencyDollar,

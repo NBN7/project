@@ -26,7 +26,7 @@ const renderStepsContent = (content: TStepContent, index: number) => {
 const renderSteps = (step: TStep, index: number) => {
   return (
     <li key={index}>
-      <h3 className="font-semibold text-lg mb-1">
+      <h3 className="font-semibold text-base mb-1">
         {index + 1}. {step.step}
       </h3>
 
@@ -39,7 +39,7 @@ const renderSteps = (step: TStep, index: number) => {
 
 export default function UsagePage() {
   return (
-    <Container>
+    <Container sectionClassName="duration-500 animate-in fade-in-5 slide-in-from-bottom-2">
       <div className="w-full mb-10">
         <DynamicBreadcrumbs />
 
@@ -54,9 +54,9 @@ export default function UsagePage() {
             </p>
           </div>
 
-          <div className="space-y-4 mb-16">
-            <ul>{STEPS.steps.map(renderSteps)}</ul>
-          </div>
+          <ul className="space-y-4 mb-16 text-sm">
+            {STEPS.steps.map(renderSteps)}
+          </ul>
         </article>
 
         <div className="w-full flex justify-start">

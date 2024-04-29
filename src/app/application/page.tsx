@@ -17,7 +17,10 @@ export default function ApplicationPage() {
   );
 
   return (
-    <Container sectionClassName="mt-10" contentClassName="gap-1">
+    <Container
+      sectionClassName="mt-10 duration-500 animate-in fade-in-5 slide-in-from-bottom-2"
+      contentClassName="gap-1"
+    >
       <h3 className="dark:text-greydark text-greylight text-base">Balance</h3>
       {isUserLoading ? (
         <Skeleton className="flex rounded-full w-[100px] h-[40px]" />

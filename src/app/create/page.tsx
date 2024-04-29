@@ -63,7 +63,7 @@ export default function CreatePage() {
   };
 
   return (
-    <Container sectionClassName="mt-10">
+    <Container sectionClassName="mt-10 duration-500 animate-in fade-in-5 slide-in-from-bottom-2">
       <Card className="w-full">
         <CardHeader>
           <CardTitle>New transaction</CardTitle>

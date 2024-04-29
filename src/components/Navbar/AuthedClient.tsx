@@ -1,3 +1,5 @@
+import React from "react";
+
 import { signOut } from "next-auth/react";
 
 import { getUsernameAbbreviation } from "@/utils/getUsernameAbbreviation";
@@ -22,12 +24,16 @@ import type { TNavbarItem } from "@/types/navbarItems";
 import { MdLogout } from "react-icons/md";
 
 const renderNavbarItems = (navbarItem: TNavbarItem) => (
-  <Link key={navbarItem.label} href={navbarItem.href}>
-    <DropdownMenuItem>
-      <navbarItem.icon className="mr-2 size-4" />
-      <span>{navbarItem.label}</span>
-    </DropdownMenuItem>
-  </Link>
+  <React.Fragment key={navbarItem.label}>
+    {navbarItem.label === "Profile" ? <DropdownMenuSeparator /> : null}
+
+    <Link href={navbarItem.href}>
+      <DropdownMenuItem>
+        <navbarItem.icon className="mr-2 size-4" />
+        <span>{navbarItem.label}</span>
+      </DropdownMenuItem>
+    </Link>
+  </React.Fragment>
 );
 
 interface AuthedClientProps {
@@ -48,16 +54,24 @@ export const AuthedClient = ({ session }: AuthedClientProps) => {
         </Avatar>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent align="end">
-        <DropdownMenuLabel className="cursor-default">
-          My Account
+      <DropdownMenuContent
+        onCloseAutoFocus={(e) => e.preventDefault()}
+        align="end"
+      >
+        <DropdownMenuLabel className="cursor-default font-medium">
+          <div className="flex flex-col">
+            <p className="text-sm">{session.user.name}</p>
+            <p className="text-xs dark:text-greydark text-greylight">
+              {session.user.email}
+            </p>
+          </div>
         </DropdownMenuLabel>
 
         <DropdownMenuSeparator />
 
         {NAVBAR_ITEMS.map(renderNavbarItems)}
 
-        <DropdownMenuSeparator />
+        {/* <DropdownMenuSeparator /> */}
 
         <DropdownMenuItem onClick={() => signOut()}>
           <MdLogout className="mr-2 size-4" />

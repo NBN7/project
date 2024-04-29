@@ -20,7 +20,7 @@ export default function ProfilePage() {
   const { data: user } = useGetUser(session?.user.id as string);
 
   return (
-    <Container sectionClassName="mt-20 mb-10">
+    <Container sectionClassName="mt-20 mb-10 duration-500 animate-in fade-in-5 slide-in-from-bottom-2">
       <Dialog>
         <div className="w-full">
           <div className="w-full flex items-center justify-between">

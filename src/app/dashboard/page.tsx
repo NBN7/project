@@ -16,7 +16,7 @@ export default function DashboardPage() {
   const { users } = useGetUsers();
 
   return (
-    <Container sectionClassName="mt-2">
+    <Container sectionClassName="mt-2 duration-500 animate-in fade-in-5 slide-in-from-bottom-2">
       <div className="w-full">
         <div className="mb-4">
           <h1 className="font-semibold text-xl">Welcome back, {firstName}</h1>

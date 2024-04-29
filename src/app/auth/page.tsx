@@ -3,7 +3,10 @@ import { Container } from "@/components/Container";
 
 export default function AuthPage() {
   return (
-    <Container sectionClassName="mt-20">
+    <Container
+      sectionClassName="mt-20 duration-500 animate-in fade-in-5 slide-in-from-bottom-2"
+      contentClassName="gap-4"
+    >
       {/* title */}
       <h1 className="text-4xl font-semibold text-pretty">
         Welcome to{" "}
