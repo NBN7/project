@@ -2,12 +2,21 @@
 
 import { Container } from "@/components/Container";
 import { GetStartedButton, GithubButton } from "@/components/CustomButtons";
+import { Pill } from "@/components/Pill";
+
+const circle = (
+  <div
+    aria-hidden="true"
+    className="bg-[#0070F0] animate-pulse size-[6px] rounded-full"
+  ></div>
+);
 
 export default function HomePage() {
   return (
     <main>
       <Container sectionClassName="mt-20">
-        <div className="w-full flex flex-col gap-2 text-center items-center">
+        <div className="w-full flex flex-col gap-4 text-center items-center">
+          <Pill icon={circle} title="Introducing v1.0.0" />
           {/* title */}
           <h1 className="text-4xl font-semibold text-pretty">
             <span className="from-[#0070F0] to-[#19cfff] bg-clip-text text-transparent bg-gradient-to-b">

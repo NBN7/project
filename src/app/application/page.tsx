@@ -22,7 +22,7 @@ export default function ApplicationPage() {
       {isUserLoading ? (
         <Skeleton className="flex rounded-full w-[100px] h-[40px]" />
       ) : (
-        <p className="text-4xl">${user?.balance?.toFixed(2)}</p>
+        <p className="text-4xl font-semibold">${user?.balance?.toFixed(2)}</p>
       )}
 
       <TransactionsList />

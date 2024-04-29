@@ -37,8 +37,10 @@ export const EditProfileDialog = ({
     description: inputDescription,
   });
 
-  const handleEditProfile = () => {
-    callEditUserMutation();
+  const handleEditProfile = async () => {
+    await callEditUserMutation();
+
+    setConfirm("");
   };
 
   useEffect(() => {
@@ -66,7 +68,7 @@ export const EditProfileDialog = ({
         className="focus-visible:ring-offset-0 focus-visible:ring-0"
         value={inputName}
         name="name"
-        onChange={(e) => setInputName(e.target.value.toLowerCase())}
+        onChange={(e) => setInputName(e.target.value)}
       />
       <Textarea
         maxLength={32}
@@ -75,7 +77,7 @@ export const EditProfileDialog = ({
         className="focus-visible:ring-offset-0 focus-visible:ring-0"
         value={inputDescription}
         name="description"
-        onChange={(e) => setInputDescription(e.target.value.toLowerCase())}
+        onChange={(e) => setInputDescription(e.target.value)}
       />
 
       <Input
@@ -93,7 +95,7 @@ export const EditProfileDialog = ({
               !inputName.length ||
               !inputDescription.length ||
               (inputName === name && inputDescription === description) ||
-              confirm !== "edit"
+              confirm.toLowerCase() !== "edit"
             }
             className="w-full"
             onClick={handleEditProfile}
