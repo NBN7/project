@@ -1,3 +1,5 @@
 import { getGoals } from "./getGoals";
+import { createGoal } from "./createGoal";
+import { deleteGoal } from "./deleteGoal";
 
-export { getGoals };
+export { getGoals, createGoal, deleteGoal };

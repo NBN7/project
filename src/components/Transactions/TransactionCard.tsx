@@ -12,10 +12,10 @@ interface TransactionCardProps {
 const TransactionCard = ({ transaction }: TransactionCardProps) => {
   return (
     <Dialog>
-      <DialogTrigger className="w-full">
+      <DialogTrigger className="w-full text-start">
         <div className="flex items-center justify-between p-2 cursor-pointer hover:bg-[#F5F5F5] dark:hover:bg-neutral-800 rounded transition-all duration-150">
           <div className="overflow-hidden">
-            <p className="max-w-[200px] sm:max-w-none truncate text-start">
+            <p className="max-w-[200px] sm:max-w-none truncate">
               {transaction.description}
             </p>
             <p className="text-sm dark:text-greydark text-greylight">

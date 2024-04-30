@@ -1,29 +1,33 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, lazy, Suspense } from "react";
 
 import { useSession } from "next-auth/react";
 
 import { useGetGoals } from "@/hooks/goals/useGetGoals";
 
-import { GoalCard } from "./GoalCard";
+const GoalCard = lazy(() => import("./GoalCard"));
+import { GoalCardSkeleton } from "./GoalCardSkeleton";
 import { GoalsEmpty } from "./GoalsEmpty";
 
 import type { TGoal } from "@/types/goals";
 
 const renderGoals = (goal: TGoal) => {
-  return <GoalCard key={goal.id} goal={goal} />;
+  return (
+    <Suspense key={goal.id} fallback={<GoalCardSkeleton />}>
+      <GoalCard goal={goal} />
+    </Suspense>
+  );
 };
 
 export const GoalsList = () => {
   const { data: session } = useSession();
-  const userId = session?.user?.id;
 
-  const { data: goals, refetch } = useGetGoals(userId as string);
+  const { data: goals, refetch } = useGetGoals(session?.user.id as string);
 
   useEffect(() => {
     refetch();
-  }, [userId, refetch]);
+  }, [session, refetch]);
 
   return (
     <div className="grid sm:grid-cols-2 gap-2">
