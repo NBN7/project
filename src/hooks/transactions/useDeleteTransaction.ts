@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { deleteTransaction } from "@/services/deleteTransaction";
+import { deleteTransaction } from "@/services/transactions/deleteTransaction";
 
 import { toastCall } from "@/utils/toastCall";
 
@@ -21,6 +21,7 @@ export const useDeleteTransaction = ({
       toastCall("Transaction deleted successfully");
       queryClient.invalidateQueries({ queryKey: ["transactions"] });
       queryClient.invalidateQueries({ queryKey: ["user"] });
+      queryClient.invalidateQueries({ queryKey: ["goals"] });
     },
     onError: () => {
       toastCall("Error deleting transaction");

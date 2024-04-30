@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 import type { TUsersResponse, TUser } from "@/types/user";
-import { getUsers } from "@/services/getUsers";
+import { getUsers } from "@/services/users/getUsers";
 
 export const useGetUsers = () => {
   const { isLoading, isError, data, refetch } = useQuery<TUsersResponse>({

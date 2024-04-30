@@ -2,7 +2,7 @@
 
 import { useSession } from "next-auth/react";
 
-import { useGetUsers } from "@/hooks/useGetUsers";
+import { useGetUsers } from "@/hooks/users/useGetUsers";
 
 import { Container } from "@/components/Container";
 import { UsersTable } from "@/components/UsersTable";

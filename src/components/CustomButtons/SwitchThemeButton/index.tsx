@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 import { useSession } from "next-auth/react";
 
-import { useSwitchTheme } from "@/hooks/useSwitchTheme";
+import { useSwitchTheme } from "@/hooks/users/useSwitchTheme";
 
 import { SwitchThemeButtonSkeleton } from "@/components/CustomButtons/SwitchThemeButton/SwitchThemeButtonSkeleton";
 

@@ -2,13 +2,13 @@
 
 import { useSession } from "next-auth/react";
 
-import { useGetUser } from "@/hooks/useGetUser";
+import { useGetUser } from "@/hooks/users/useGetUser";
 
 import { TransactionsList } from "@/components/Transactions";
 
 import { Skeleton } from "@/components/ui/skeleton";
 
-export default function ApplicationPage() {
+export default function TransactionsPage() {
   const { data: session } = useSession();
 
   const { data: user, isLoading: isUserLoading } = useGetUser(

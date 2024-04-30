@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 
-import { switchTheme } from "@/services/switchTheme";
+import { switchTheme } from "@/services/users/switchTheme";
 
 import { toastCall } from "@/utils/toastCall";
 

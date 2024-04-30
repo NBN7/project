@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import { useSession } from "next-auth/react";
 
-import { useEditUser } from "@/hooks/useEditUser";
+import { useEditUser } from "@/hooks/users/useEditUser";
 
 import {
   DialogDescription,

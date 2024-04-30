@@ -92,14 +92,13 @@ model Transaction {
 }
 
 model Goal {
-  id          String    @id @default(cuid())
-  title       String
-  description String?   @db.VarChar(255)
+  id          String   @id @default(cuid())
+  title       String   @default("Goal") @db.VarChar(32)
   amount      Float
-  savedAmount Float     @default(0)
-  startDate   DateTime  @default(now())
+  savedAmount Float    @default(0)
+  startDate   DateTime @default(now())
   dueDate     DateTime
-  completed   Boolean   @default(false)
+  completed   Boolean  @default(false)
   userId      String
-  user        User      @relation(fields: [userId], references: [id])
+  user        User     @relation(fields: [userId], references: [id])
 }

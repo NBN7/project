@@ -4,9 +4,7 @@ import { useState } from "react";
 
 import { useSession } from "next-auth/react";
 
-import { useCreateTransaction } from "@/hooks/useCreateTransaction";
-
-import { Container } from "@/components/Container";
+import { useCreateTransaction } from "@/hooks/transactions/useCreateTransaction";
 
 import {
   Card,
@@ -38,7 +36,7 @@ import { CalendarIcon } from "lucide-react";
 import type { TransactionType } from "@/types/transaction";
 const TRANSACTION_TYPES: TransactionType[] = ["income", "expense"];
 
-export default function CreatePage() {
+export default function CreateTransactionPage() {
   const { data: session } = useSession();
 
   const [description, setDescription] = useState("");
@@ -63,8 +61,8 @@ export default function CreatePage() {
   };
 
   return (
-    <div className="duration-500 animate-in fade-in-5 slide-in-from-bottom-2">
-      <Card className="w-full">
+    <div className="w-full duration-500 animate-in fade-in-5 slide-in-from-bottom-2">
+      <Card>
         <CardHeader>
           <CardTitle>New transaction</CardTitle>
           <CardDescription>

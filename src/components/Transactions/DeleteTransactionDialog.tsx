@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import { useSession } from "next-auth/react";
 
-import { useDeleteTransaction } from "@/hooks/useDeleteTransaction";
+import { useDeleteTransaction } from "@/hooks/transactions/useDeleteTransaction";
 
 import {
   DialogDescription,

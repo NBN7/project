@@ -2,7 +2,7 @@
 
 import { useSession } from "next-auth/react";
 
-import { useGetUser } from "@/hooks/useGetUser";
+import { useGetUser } from "@/hooks/users/useGetUser";
 
 import { getUsernameAbbreviation } from "@/utils/getUsernameAbbreviation";
 

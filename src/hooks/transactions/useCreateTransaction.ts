@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { createTransaction } from "@/services/createTransaction";
+import { createTransaction } from "@/services/transactions/createTransaction";
 
 import { toastCall } from "@/utils/toastCall";
 
@@ -29,6 +29,7 @@ export const useCreateTransaction = ({
     onSuccess: () => {
       toastCall("Transaction created successfully!");
       queryClient.invalidateQueries({ queryKey: ["transactions"] });
+      queryClient.invalidateQueries({ queryKey: ["goals"] });
     },
     onError: () => {
       toastCall("Error creating transaction");

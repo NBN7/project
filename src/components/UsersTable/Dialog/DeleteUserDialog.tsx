@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { useDeleteUser } from "@/hooks/useDeleteUser";
+import { useDeleteUser } from "@/hooks/users/useDeleteUser";
 
 import {
   DialogDescription,

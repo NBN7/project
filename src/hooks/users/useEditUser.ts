@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { editUser } from "@/services/editUser";
+import { editUser } from "@/services/users/editUser";
 import { toastCall } from "@/utils/toastCall";
 
 interface UseEditUserParams {

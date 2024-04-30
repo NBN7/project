@@ -4,7 +4,7 @@ import { lazy, Suspense } from "react";
 
 import { useSession } from "next-auth/react";
 
-import { useGetTransactions } from "@/hooks/useGetTransactions";
+import { useGetTransactions } from "@/hooks/transactions/useGetTransactions";
 
 import { Card } from "@/components/ui/card";
 const TransactionCard = lazy(() => import("./TransactionCard"));

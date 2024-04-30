@@ -1,4 +1,4 @@
-import { useGetMonthlySummary } from "@/hooks/useGetMonthlySummary";
+import { useGetMonthlySummary } from "@/hooks/transactions/useGetMonthlySummary";
 
 import {
   BarChart,

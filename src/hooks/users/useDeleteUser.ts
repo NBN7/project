@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { deleteUser } from "@/services/deleteUser";
+import { deleteUser } from "@/services/users/deleteUser";
 
 import { toastCall } from "@/utils/toastCall";
 

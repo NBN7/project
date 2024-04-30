@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { getGoals } from "@/services/getGoals";
+import { getUser } from "@/services/users/getUser";
 
-export const useGetGoals = (id: string) => {
+export const useGetUser = (id: string) => {
   const { isLoading, isError, data, refetch } = useQuery({
-    queryKey: ["goals"],
-    queryFn: () => getGoals(id),
+    queryKey: ["user", id],
+    queryFn: () => getUser(id),
     enabled: !!id,
   });
 

@@ -2,7 +2,9 @@ export type TGoal = {
   id: string;
   title: string;
   description: string;
+  amount: number;
+  savedAmount: number;
   startDate: string;
-  endDate: string;
-  isCompleted: boolean;
+  dueDate: string;
+  completed: boolean;
 };

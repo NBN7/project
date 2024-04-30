@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 
-import { useEditUser } from "@/hooks/useEditUser";
+import { useEditUser } from "@/hooks/users/useEditUser";
 
 import {
   DialogContent,
