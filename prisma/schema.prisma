@@ -23,6 +23,11 @@ enum Theme {
   DARK
 }
 
+enum TransactionType {
+  income
+  expense
+}
+
 model Account {
   id                String  @id @default(cuid())
   userId            String
@@ -56,8 +61,8 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   image         String?
-  role          String    @default("USER")
-  theme         String    @default("LIGHT")
+  role          Role      @default(USER)
+  theme         Theme     @default(LIGHT)
   description   String?   @default("Description") @db.VarChar(32)
   balance       Float     @default(0)
   accounts      Account[]
@@ -65,6 +70,7 @@ model User {
 
   // add relations down here
   transactions Transaction[]
+  goals        Goal[]
 }
 
 model VerificationToken {
@@ -76,11 +82,24 @@ model VerificationToken {
 }
 
 model Transaction {
-  id          String @id @default(cuid())
+  id          String          @id @default(cuid())
   amount      Float
-  type        String
-  description String @default("transaction") @db.VarChar(32)
+  type        TransactionType @default(expense)
+  description String          @default("transaction") @db.VarChar(32)
   date        String
   userId      String
-  user        User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user        User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Goal {
+  id          String    @id @default(cuid())
+  title       String
+  description String?   @db.VarChar(255)
+  amount      Float
+  savedAmount Float     @default(0)
+  startDate   DateTime  @default(now())
+  dueDate     DateTime
+  completed   Boolean   @default(false)
+  userId      String
+  user        User      @relation(fields: [userId], references: [id])
 }

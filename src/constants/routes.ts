@@ -9,6 +9,10 @@ export const ROUTES = Object.freeze({
     ROOT: "/transactions",
     CREATE: "/transactions/create",
   },
+  GOALS: {
+    ROOT: "/goals",
+    CREATE: "/goals/create",
+  },
   PROFILE: "/profile",
   DASHBOARD: "/dashboard",
 } as const);

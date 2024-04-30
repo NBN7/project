@@ -1,7 +1,7 @@
 import { RiHome2Line } from "react-icons/ri";
 import { AiOutlineUser } from "react-icons/ai";
 import { BsCurrencyDollar } from "react-icons/bs";
-import { FiPlus } from "react-icons/fi";
+import { GoGoal } from "react-icons/go";
 
 import type { TNavbarItem } from "@/types/navbarItems";
 import { ROUTES } from "@/constants/routes";
@@ -18,9 +18,9 @@ export const NAVBAR_ITEMS: TNavbarItem[] = [
     href: ROUTES.TRANSACTIONS.ROOT,
   },
   {
-    label: "Create",
-    icon: FiPlus,
-    href: ROUTES.TRANSACTIONS.CREATE,
+    label: "Goals",
+    icon: GoGoal,
+    href: ROUTES.GOALS.ROOT,
   },
   {
     label: "Profile",
