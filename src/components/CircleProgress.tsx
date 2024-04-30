@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
-
+import { useState, useEffect, useRef } from "react";
 import { twMerge } from "tailwind-merge";
 
 interface CircleProgressProps {
@@ -18,22 +17,27 @@ export const CircleProgress = ({
   size = 100,
 }: CircleProgressProps) => {
   const [defaultValue, setDefaultValue] = useState(0);
+  const requestRef = useRef<NodeJS.Timeout | null>(null);
 
-  const strokeWidth = 10; // Stroke width for the progress circle
+  const strokeWidth = 10;
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (defaultValue >= value) {
-        clearInterval(interval);
-        return;
-      }
-      setDefaultValue((prev) => prev + 1);
-    }, 10);
+    const updateProgress = () => {
+      setDefaultValue((prev) => {
+        if (prev < value) return prev + 1;
+        else if (prev > value) return prev - 1;
+        return prev;
+      });
+    };
 
-    return () => clearInterval(interval);
-  }, [defaultValue, value]);
+    requestRef.current = setInterval(updateProgress, 10);
+
+    return () => {
+      if (requestRef.current) clearInterval(requestRef.current);
+    };
+  }, [value]);
 
   const strokeDashoffset = circumference - (defaultValue / 100) * circumference;
 
@@ -70,14 +74,13 @@ export const CircleProgress = ({
           strokeLinecap="round"
         />
       </svg>
-
       <div
         className={twMerge(
           "z-10 relative text-center text-lg font-semibold dark:text-white text-black",
           innerCircle
         )}
       >
-        {defaultValue}%
+        {Math.round(defaultValue)}%
       </div>
     </div>
   );

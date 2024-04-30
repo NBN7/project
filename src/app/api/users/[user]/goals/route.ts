@@ -37,7 +37,7 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
     });
 
     // update saved amount for each goal
-    goals.forEach(async (goal) => {
+    for (const goal of goals) {
       const transactionSum = await prisma.transaction.aggregate({
         where: {
           userId: user,
@@ -54,13 +54,18 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
 
       const newSavedAmount = transactionSum._sum.amount || 0;
 
-      if (newSavedAmount !== goal.savedAmount) {
-        await prisma.goal.update({
-          where: { id: goal.id },
-          data: { savedAmount: newSavedAmount },
-        });
-      }
-    });
+      // update goal if saved amount has changed
+      await prisma.goal.update({
+        where: { id: goal.id },
+        data: {
+          completed: newSavedAmount >= goal.amount,
+          savedAmount:
+            newSavedAmount !== goal.savedAmount && !goal.completed
+              ? newSavedAmount
+              : undefined,
+        },
+      });
+    }
 
     return NextResponse.json(goals);
   } catch (error) {
