@@ -1,7 +1,7 @@
 import { Card } from "../ui/card";
 import { CircleProgress } from "../CircleProgress";
 
-import { transformDate } from "@/utils/transformDate";
+import { transformDate } from "@/utils/date/transformDate";
 
 import type { TGoal } from "@/types/goals";
 

@@ -7,7 +7,7 @@ import { prisma } from "@/libs/prisma";
 import { NextRequest } from "next/server";
 import type { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 
-import { checkUserSession } from "@/utils/checkUserSession";
+import { checkUserSession } from "@/utils/user/checkUserSession";
 
 export async function GET(req: NextRequest, { params }: { params: Params }) {
   try {

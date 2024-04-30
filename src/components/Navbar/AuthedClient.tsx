@@ -2,7 +2,7 @@ import React from "react";
 
 import { signOut } from "next-auth/react";
 
-import { getUsernameAbbreviation } from "@/utils/getUsernameAbbreviation";
+import { getUsernameAbbreviation } from "@/utils/user/getUsernameAbbreviation";
 
 import Link from "next/link";
 

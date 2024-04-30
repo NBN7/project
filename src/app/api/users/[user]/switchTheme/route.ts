@@ -1,4 +1,4 @@
-import { checkUserSession } from "@/utils/checkUserSession";
+import { checkUserSession } from "@/utils/user/checkUserSession";
 
 import { NextResponse } from "next/server";
 import { prisma } from "@/libs/prisma";

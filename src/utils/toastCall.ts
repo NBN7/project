@@ -1,4 +1,4 @@
-import { getCurrentDate } from "@/utils/getCurrentDate";
+import { getCurrentDate } from "@/utils/date/getCurrentDate";
 import { toast } from "sonner";
 
 export const toastCall = (message: string) => {

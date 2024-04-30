@@ -4,7 +4,7 @@ import { useSession } from "next-auth/react";
 
 import { useGetUser } from "@/hooks/users/useGetUser";
 
-import { getUsernameAbbreviation } from "@/utils/getUsernameAbbreviation";
+import { getUsernameAbbreviation } from "@/utils/user/getUsernameAbbreviation";
 
 import { Container } from "@/components/Container";
 import { MonthlyChartCard } from "@/components/MonthlyChartCard";

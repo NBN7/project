@@ -1,4 +1,4 @@
-import { transformDate } from "@/utils/transformDate";
+import { transformDate } from "@/utils/date/transformDate";
 
 import { DeleteTransactionDialog } from "./DeleteTransactionDialog";
 import { Dialog, DialogTrigger, DialogContent } from "../ui/dialog";

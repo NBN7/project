@@ -7,7 +7,7 @@ import { useGetUsers } from "@/hooks/users/useGetUsers";
 import { Container } from "@/components/Container";
 import { UsersTable } from "@/components/UsersTable";
 
-import { getFirstName } from "@/utils/getFirsName";
+import { getFirstName } from "@/utils/user/getFirsName";
 
 export default function DashboardPage() {
   const { data: session } = useSession();
