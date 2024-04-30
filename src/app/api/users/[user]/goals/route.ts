@@ -28,7 +28,6 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
       select: {
         id: true,
         title: true,
-        description: true,
         amount: true,
         savedAmount: true,
         startDate: true,
