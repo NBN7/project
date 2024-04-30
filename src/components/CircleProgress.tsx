@@ -27,7 +27,7 @@ export const CircleProgress = ({
     const updateProgress = () => {
       setDefaultValue((prev) => {
         if (prev < value) return prev + 1;
-        else if (prev > value) return prev - 1;
+        if (prev > value) return prev - 1;
         return prev;
       });
     };
