@@ -1,4 +1,6 @@
-export const FAQ = [
+import type { TFaq } from "@/types/faq";
+
+export const FAQ: TFaq[] = [
   {
     item: "item-1",
     question: "Is it safe to enter financial information?",

@@ -34,7 +34,7 @@ export const TransactionsList = () => {
         Transactions
       </h3>
 
-      <Card className="p-2">
+      <Card className="p-2 min-h-[60px]">
         {transactions?.length === 0 ? (
           <TransactionsEmpty />
         ) : (
