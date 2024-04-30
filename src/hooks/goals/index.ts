@@ -1,3 +1,4 @@
 import { useGetGoals } from "./useGetGoals";
+import { useCreateGoal } from "./useCreateGoal";
 
-export { useGetGoals };
+export { useGetGoals, useCreateGoal };

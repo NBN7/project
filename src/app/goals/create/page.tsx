@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import { useSession } from "next-auth/react";
 
-import { useCreateTransaction } from "@/hooks/transactions/useCreateTransaction";
+import { useCreateGoal } from "@/hooks/goals";
 
 import {
   Card,
@@ -15,14 +15,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Calendar } from "@/components/ui/calendar";
 import {
   Popover,
@@ -33,78 +25,54 @@ import { Button } from "@/components/ui/button";
 
 import { CalendarIcon } from "lucide-react";
 
-import type { TransactionType } from "@/types/transaction";
-const TRANSACTION_TYPES: TransactionType[] = ["income", "expense"];
-
-export default function CreateTransactionPage() {
+export default function CreateGoalPage() {
   const { data: session } = useSession();
 
-  const [description, setDescription] = useState("");
-  const [type, setType] = useState<TransactionType>("income");
+  const [title, setTitle] = useState("");
   const [amount, setAmount] = useState(0);
-  const [date, setDate] = useState<Date | undefined>(new Date());
 
-  const { callCreateTransactionMutation, isPending } = useCreateTransaction({
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+
+  const [date, setDate] = useState<Date | undefined>(tomorrow);
+
+  const { callCreateGoalMutation } = useCreateGoal({
     id: session?.user?.id as string,
-    description,
-    type: type,
+    title,
     amount,
-    date: date || new Date(),
+    startDate: new Date(),
+    dueDate: date || tomorrow,
   });
 
-  const handleCreateTransaction = async () => {
-    await callCreateTransactionMutation();
+  const handleCreateGoal = async () => {
+    await callCreateGoalMutation();
 
-    setDescription("");
+    setTitle("");
     setAmount(0);
-    setDate(new Date());
+    setDate(tomorrow);
   };
 
   return (
     <div className="w-full duration-500 animate-in fade-in-5 slide-in-from-bottom-2">
       <Card>
         <CardHeader>
-          <CardTitle>New transaction</CardTitle>
+          <CardTitle>New goal</CardTitle>
           <CardDescription>
-            Create a new transaction by filling out the form below.
+            Create a new goal by filling out the form below.
           </CardDescription>
         </CardHeader>
 
         <CardContent>
           <div className="flex flex-col gap-2">
             <Input
-              value={description}
+              value={title}
               maxLength={32}
               className="sm:w-1/2 focus-visible:ring-offset-0 focus-visible:ring-0"
-              placeholder="Description"
-              name="description"
+              placeholder="Title"
+              name="title"
               autoComplete="off"
-              onChange={(e) => setDescription(e.target.value)}
+              onChange={(e) => setTitle(e.target.value)}
             />
-
-            <Select
-              onValueChange={(type) =>
-                setType(type.toLocaleLowerCase() as TransactionType)
-              }
-            >
-              <SelectTrigger className="w-[180px] focus:ring-transparent">
-                <SelectValue placeholder="Select type" />
-              </SelectTrigger>
-
-              <SelectContent>
-                <SelectGroup>
-                  {TRANSACTION_TYPES.map((transaction, index) => (
-                    <SelectItem
-                      className="capitalize"
-                      key={index}
-                      value={transaction}
-                    >
-                      {transaction}
-                    </SelectItem>
-                  ))}
-                </SelectGroup>
-              </SelectContent>
-            </Select>
 
             <Input
               value={!amount ? "" : amount}
@@ -132,7 +100,7 @@ export default function CreateTransactionPage() {
                   selected={date}
                   onSelect={setDate}
                   disabled={(date) =>
-                    date > new Date() || date < new Date("1900-01-01")
+                    date < new Date() || date < new Date("1900-01-01")
                   }
                   initialFocus
                 />
@@ -143,18 +111,11 @@ export default function CreateTransactionPage() {
 
         <CardFooter>
           <Button
-            disabled={
-              !description ||
-              !type ||
-              amount <= 0 ||
-              !amount ||
-              !date ||
-              isPending
-            }
+            disabled={!title || amount <= 0 || !amount || !date}
             className="w-full"
-            onClick={handleCreateTransaction}
+            onClick={handleCreateGoal}
           >
-            Create transaction
+            Create goal
           </Button>
         </CardFooter>
       </Card>

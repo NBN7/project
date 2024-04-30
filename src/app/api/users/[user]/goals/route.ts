@@ -77,5 +77,32 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
 
 export async function POST(req: NextRequest, { params }: { params: Params }) {
   try {
-  } catch (error) {}
+    const { title, amount, startDate, dueDate } = await req.json();
+    const { user } = params;
+
+    const sessionCheck = await checkUserSession(user);
+    if (!sessionCheck.isValid) {
+      return sessionCheck.response;
+    }
+
+    const newGoal = await prisma.goal.create({
+      data: {
+        userId: user,
+        title,
+        amount,
+        startDate,
+        dueDate,
+      },
+    });
+
+    return NextResponse.json(newGoal);
+  } catch (error) {
+    if (error instanceof Error) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 }
+    );
+  }
 }
