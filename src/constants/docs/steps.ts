@@ -11,7 +11,7 @@ export const STEPS: TSteps = Object.freeze({
         },
         {
           title: "Create an account:",
-          description: "Sign up using your google account.",
+          description: "Sign up using your Google account.",
         },
       ],
     },
@@ -19,7 +19,7 @@ export const STEPS: TSteps = Object.freeze({
       step: "Create a transaction",
       content: [
         {
-          title: 'Navigate to the "Create" section:',
+          title: 'Navigate to the "Transactions" section:',
           description: 'Once logged in, go to "Create".',
         },
         {
@@ -46,6 +46,25 @@ export const STEPS: TSteps = Object.freeze({
           title: "Manage transactions:",
           description:
             "If necessary, you can delete individual or all transactions from this section to keep your records up-to-date.",
+        },
+      ],
+    },
+    {
+      step: "Set and Track Goals",
+      content: [
+        {
+          title: 'Navigate to the "Goals" section:',
+          description:
+            "Access this section to view and manage your financial goals.",
+        },
+        {
+          title: "Create a goal:",
+          description: `Enter details such as the goal title, the target amount, and the deadline.`,
+        },
+        {
+          title: "View goals:",
+          description:
+            "Review the list of current goals, each displayed with its title, current amount towards the goal, and a circular progress chart to visualize your progress.",
         },
       ],
     },
