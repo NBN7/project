@@ -9,6 +9,7 @@ import { getUsernameAbbreviation } from "@/utils/user/getUsernameAbbreviation";
 import { Container } from "@/components/Container";
 import { MonthlyChartCard } from "@/components/MonthlyChartCard";
 import { EditProfileDialog } from "@/components/Profile/EditProfileDialog";
+import { DownloadTransactionsButton } from "@/components/CustomButtons/DownloadTransactionsButton";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -42,6 +43,8 @@ export default function ProfilePage() {
           </p>
 
           <MonthlyChartCard id={session?.user.id as string} />
+
+          <DownloadTransactionsButton className="mt-5" />
         </div>
 
         <EditProfileDialog
