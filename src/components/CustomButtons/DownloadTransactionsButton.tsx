@@ -60,7 +60,7 @@ export const DownloadTransactionsButton = ({
       disabled={isLoading}
     >
       <DownloadIcon
-        size={14}
+        size={16}
         className="mr-2 dark:text-icondark text-iconlight"
       />
       <span>Export transactions</span>
