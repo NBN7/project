@@ -7,11 +7,7 @@ export const STEPS: TSteps = Object.freeze({
       content: [
         {
           title: "Open the app:",
-          description: "Launch the app on your device.",
-        },
-        {
-          title: "Create an account:",
-          description: "Sign up using your Google account.",
+          description: "Launch the app and sign up using your Google account.",
         },
       ],
     },
@@ -19,18 +15,9 @@ export const STEPS: TSteps = Object.freeze({
       step: "Create a transaction",
       content: [
         {
-          title: 'Navigate to the "Transactions" section:',
-          description: 'Once logged in, go to "Create".',
-        },
-        {
-          title: "Enter transaction details:",
+          title: "Transaction creation:",
           description:
-            "Add the description, amount, and date of the transaction.",
-        },
-        {
-          title: "Save the transaction:",
-          description:
-            'Review the details and confirm by clicking "Create transaction" to add it to your account.',
+            'Navigate to "Create" in the "Transactions" section, enter details and save.',
         },
       ],
     },
@@ -38,14 +25,9 @@ export const STEPS: TSteps = Object.freeze({
       step: "View your finances",
       content: [
         {
-          title: 'Go to the "Application" section:',
+          title: "Review transactions:",
           description:
-            "Here, you can view your overall balance and all past transactions.",
-        },
-        {
-          title: "Manage transactions:",
-          description:
-            "If necessary, you can delete individual or all transactions from this section to keep your records up-to-date.",
+            'View and manage your transactions and overall balance in the "Transactions" section.',
         },
       ],
     },
@@ -53,18 +35,9 @@ export const STEPS: TSteps = Object.freeze({
       step: "Set and Track Goals",
       content: [
         {
-          title: 'Navigate to the "Goals" section:',
+          title: "Manage goals:",
           description:
-            "Access this section to view and manage your financial goals.",
-        },
-        {
-          title: "Create a goal:",
-          description: `Enter details such as the goal title, the target amount, and the deadline.`,
-        },
-        {
-          title: "View goals:",
-          description:
-            "Review the list of current goals, each displayed with its title, current amount towards the goal, and a circular progress chart to visualize your progress.",
+            'Go to the "Goals" section to create, view, and track your financial goals.',
         },
       ],
     },
@@ -72,14 +45,19 @@ export const STEPS: TSteps = Object.freeze({
       step: "Analyze Monthly Expenses",
       content: [
         {
-          title: 'Visit the "Profile" section:',
+          title: "Examine expenses:",
           description:
-            "Access graphs and charts that visualize your spending habits over the month.",
+            'Check your spending patterns via charts in the "Profile" section.',
         },
+      ],
+    },
+    {
+      step: "Export Transactions",
+      content: [
         {
-          title: "Adjust settings:",
+          title: "Data export:",
           description:
-            "In the same section, you can also update your name and description as needed to personalize your profile.",
+            'Download your transaction details as a JSON file from the "Profile" section.',
         },
       ],
     },
