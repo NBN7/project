@@ -42,7 +42,7 @@ const GoalCard = ({ goal }: GoalCardProps) => {
               </p>
             </div>
 
-            <CircleProgress value={percentage} />
+            <CircleProgress value={percentage} outerCircle="cursor-pointer" />
           </div>
         </Card>
       </DialogTrigger>

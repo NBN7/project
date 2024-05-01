@@ -4,6 +4,7 @@ import { GetStartedButton } from "./GetStartedButton";
 import { GithubButton } from "./GithubButton";
 import { GoBackButton } from "./GoBackButton";
 import { SignInButton } from "./SignInButton";
+import { DownloadTransactionsButton } from "./DownloadTransactionsButton";
 
 export {
   SwitchThemeButton,
@@ -12,4 +13,5 @@ export {
   GithubButton,
   GoBackButton,
   SignInButton,
+  DownloadTransactionsButton,
 };
