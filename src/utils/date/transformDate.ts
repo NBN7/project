@@ -1,4 +1,4 @@
-export const transformDate = (date: string) => {
+export const transformDate = (date: string | Date) => {
   const options = {
     weekday: "long" as const,
     year: "numeric" as const,

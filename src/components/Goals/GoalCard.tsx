@@ -4,7 +4,7 @@ import { DeleteGoalDialog } from "./DeleteGoalDialog";
 import { Card } from "../ui/card";
 import { Dialog, DialogTrigger, DialogContent } from "../ui/dialog";
 
-import { transformDate } from "@/utils/date/transformDate";
+import { transformToShortDate } from "@/utils/date";
 
 import type { TGoal } from "@/types/goals";
 
@@ -19,7 +19,8 @@ const getPercentage = (savedAmount: number, amount: number) => {
 const GoalCard = ({ goal }: GoalCardProps) => {
   const percentage = getPercentage(goal.savedAmount, goal.amount);
 
-  const date = transformDate(goal.dueDate);
+  const startDate = transformToShortDate(goal.startDate);
+  const dueDate = transformToShortDate(goal.dueDate);
 
   return (
     <Dialog>
@@ -38,7 +39,7 @@ const GoalCard = ({ goal }: GoalCardProps) => {
 
               <p className="truncate text-sm">{goal.title}</p>
               <p className="dark:text-greydark text-greylight text-sm mt-2">
-                {date}
+                {startDate} - {dueDate}
               </p>
             </div>
 

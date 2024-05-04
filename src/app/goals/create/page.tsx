@@ -23,7 +23,41 @@ import {
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 
+import { transformToShortDate } from "@/utils/date";
+
+import { addDays } from "date-fns";
+import { DateRange } from "react-day-picker";
+
 import { CalendarIcon } from "lucide-react";
+
+const today = new Date();
+const currentDate = new Date(
+  today.getFullYear(),
+  today.getMonth(),
+  today.getDate()
+);
+
+const defaultSelected = {
+  from: currentDate,
+  to: addDays(currentDate, 4),
+};
+
+const formatDateDisplay = (date: DateRange) => {
+  if (!date) {
+    return "Date range";
+  }
+  if (date.from && date.to) {
+    return `${transformToShortDate(date.from)} - ${transformToShortDate(
+      date.to
+    )}`;
+  }
+  if (date.from && !date.to) {
+    return `${transformToShortDate(date.from)} - Select due date`;
+  }
+  if (!date.from) {
+    return "Select start date";
+  }
+};
 
 export default function CreateGoalPage() {
   const { data: session } = useSession();
@@ -31,17 +65,14 @@ export default function CreateGoalPage() {
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState(0);
 
-  const tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate() + 1);
-
-  const [date, setDate] = useState<Date | undefined>(tomorrow);
+  const [date, setDate] = useState<DateRange | undefined>(defaultSelected);
 
   const { callCreateGoalMutation } = useCreateGoal({
     id: session?.user?.id as string,
     title,
     amount,
-    startDate: new Date(),
-    dueDate: date || tomorrow,
+    startDate: date?.from || defaultSelected.from,
+    dueDate: date?.to || defaultSelected.to,
   });
 
   const handleCreateGoal = async () => {
@@ -49,7 +80,7 @@ export default function CreateGoalPage() {
 
     setTitle("");
     setAmount(0);
-    setDate(tomorrow);
+    setDate(defaultSelected);
   };
 
   return (
@@ -87,21 +118,22 @@ export default function CreateGoalPage() {
               <PopoverTrigger asChild>
                 <Button
                   variant="outline"
-                  className="w-[180px] pl-3 text-left font-normal"
+                  className="sm:w-1/2 pl-3 text-left font-normal"
                 >
-                  <span>{date?.toLocaleDateString()}</span>
+                  <span className="dark:text-greydark text-greylight">
+                    {formatDateDisplay(date as DateRange)}
+                  </span>
                   <CalendarIcon className="ml-auto size-4 dark:text-icondark text-iconlight" />
                 </Button>
               </PopoverTrigger>
 
               <PopoverContent className="w-auto p-0" align="start">
                 <Calendar
-                  mode="single"
+                  id="due-date-calendar"
+                  mode="range"
                   selected={date}
                   onSelect={setDate}
-                  disabled={(date) =>
-                    date < new Date() || date < new Date("1900-01-01")
-                  }
+                  defaultMonth={currentDate}
                   initialFocus
                 />
               </PopoverContent>
@@ -111,7 +143,14 @@ export default function CreateGoalPage() {
 
         <CardFooter>
           <Button
-            disabled={!title || amount <= 0 || !amount || !date}
+            disabled={
+              !title ||
+              amount <= 0 ||
+              !amount ||
+              !date ||
+              !date.from ||
+              !date.to
+            }
             className="w-full"
             onClick={handleCreateGoal}
           >
