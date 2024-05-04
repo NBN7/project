@@ -31,16 +31,21 @@ import {
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 
+import { TransactionType } from "@prisma/client";
+
 import { CalendarIcon } from "lucide-react";
 
-import type { TransactionType } from "@/types/transaction";
-const TRANSACTION_TYPES: TransactionType[] = ["income", "expense"];
+// import type { TransactionType } from "@/types/transaction";
+const TRANSACTION_TYPES: TransactionType[] = [
+  TransactionType.income,
+  TransactionType.expense,
+];
 
 export default function CreateTransactionPage() {
   const { data: session } = useSession();
 
   const [description, setDescription] = useState("");
-  const [type, setType] = useState<TransactionType>("income");
+  const [type, setType] = useState<TransactionType>(TransactionType.income);
   const [amount, setAmount] = useState(0);
   const [date, setDate] = useState<Date | undefined>(new Date());
 

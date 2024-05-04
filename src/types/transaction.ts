@@ -1,4 +1,4 @@
-export type TransactionType = "income" | "expense";
+import { TransactionType } from "@prisma/client";
 
 export interface Transaction {
   id: string;

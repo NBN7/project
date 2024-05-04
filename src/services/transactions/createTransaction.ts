@@ -1,5 +1,5 @@
 import { Transaction } from "@/types/transaction";
-import type { TransactionType } from "@/types/transaction";
+import { TransactionType } from "@prisma/client";
 
 interface CreateTransactionParams {
   id: string;

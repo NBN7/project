@@ -6,6 +6,8 @@ import { prisma } from "@/libs/prisma";
 import { NextRequest } from "next/server";
 import type { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 
+import { TransactionType } from "@prisma/client";
+
 export async function GET(req: NextRequest, { params }: { params: Params }) {
   try {
     const { user, id } = params;
@@ -71,7 +73,7 @@ export async function DELETE(req: NextRequest, { params }: { params: Params }) {
     }
 
     // if the transaction is an income decrement the user's balance
-    if (transactionExists.type === "income") {
+    if (transactionExists.type === TransactionType.income) {
       await prisma.user.update({
         where: { id: user },
         data: {
@@ -83,7 +85,7 @@ export async function DELETE(req: NextRequest, { params }: { params: Params }) {
     }
 
     // if the transaction is an expense increment the user's balance
-    if (transactionExists.type === "expense") {
+    if (transactionExists.type === TransactionType.expense) {
       await prisma.user.update({
         where: { id: user },
         data: {

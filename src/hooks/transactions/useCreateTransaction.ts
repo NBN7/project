@@ -4,7 +4,7 @@ import { createTransaction } from "@/services/transactions/createTransaction";
 
 import { toastCall } from "@/utils/toastCall";
 
-import type { TransactionType } from "@/types/transaction";
+import { TransactionType } from "@prisma/client";
 
 interface CreateTransactionParams {
   id: string;

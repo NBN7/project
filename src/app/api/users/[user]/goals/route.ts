@@ -6,6 +6,8 @@ import { prisma } from "@/libs/prisma";
 import { NextRequest } from "next/server";
 import type { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 
+import { TransactionType } from "@prisma/client";
+
 export async function GET(req: NextRequest, { params }: { params: Params }) {
   try {
     const { user } = params;
@@ -45,7 +47,7 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
             gte: goal.startDate.toISOString(),
             lte: goal.dueDate.toISOString(),
           },
-          type: "income",
+          type: TransactionType.income,
         },
         _sum: {
           amount: true,

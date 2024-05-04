@@ -6,6 +6,8 @@ import { prisma } from "@/libs/prisma";
 import { NextRequest } from "next/server";
 import type { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 
+import { TransactionType } from "@prisma/client";
+
 export async function GET(req: NextRequest, { params }: { params: Params }) {
   try {
     const { user } = params;
@@ -80,7 +82,7 @@ export async function POST(req: NextRequest, { params }: { params: Params }) {
     });
 
     // sum or subtract the amount from the user's balance
-    if (type === "income") {
+    if (type === TransactionType.income) {
       await prisma.user.update({
         where: { id: user },
         data: {

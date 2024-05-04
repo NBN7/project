@@ -6,6 +6,8 @@ import { prisma } from "@/libs/prisma";
 import { NextRequest } from "next/server";
 import type { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 
+import { TransactionType } from "@prisma/client";
+
 export async function GET(req: NextRequest, { params }: { params: Params }) {
   try {
     const { user } = params;
@@ -62,7 +64,7 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
 
     transactions.forEach((transaction) => {
       const monthIndex = parseInt(transaction.date.split("-")[1], 10) - 1;
-      if (transaction.type === "income") {
+      if (transaction.type === TransactionType.income) {
         summary[monthIndex].income += transaction._sum.amount || 0;
       } else {
         summary[monthIndex].expense += transaction._sum.amount || 0;
