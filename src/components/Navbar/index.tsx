@@ -11,6 +11,8 @@ import {
 import { AuthedClient } from "@/components/Navbar/AuthedClient";
 import { DefaultClient } from "@/components/Navbar/DefaultClient";
 
+import { Role } from "@prisma/client";
+
 export const NavbarComponent = () => {
   const { data: session } = useSession();
   const pathname = usePathname();
@@ -23,7 +25,7 @@ export const NavbarComponent = () => {
         <div className="w-full flex items-center justify-end">
           <SwitchThemeButton />
 
-          {session?.user.role === "ADMIN" && <DashboardButton />}
+          {session?.user.role === Role.ADMIN && <DashboardButton />}
 
           {session ? <AuthedClient session={session} /> : <DefaultClient />}
         </div>

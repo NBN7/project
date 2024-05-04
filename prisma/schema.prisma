@@ -63,7 +63,7 @@ model User {
   image         String?
   role          Role      @default(USER)
   theme         Theme     @default(LIGHT)
-  description   String?   @default("Description") @db.VarChar(32)
+  description   String?   @default("") @db.VarChar(32)
   balance       Float     @default(0)
   accounts      Account[]
   sessions      Session[]

@@ -27,7 +27,7 @@ export default function HomePage() {
 
           {/* description */}
           <p className="text-xl dark:text-greydark text-greylight duration-700 animate-in fade-in-5 slide-in-from-top-2">
-            Fast and modern [Savings App].
+            Fast and modern Finance App.
           </p>
 
           {/* buttons */}

@@ -9,6 +9,8 @@ import type { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 
 import { checkUserSession } from "@/utils/user/checkUserSession";
 
+import { Role } from "@prisma/client";
+
 export async function GET(req: NextRequest, { params }: { params: Params }) {
   try {
     const { user } = params;
@@ -49,15 +51,22 @@ export async function DELETE(req: NextRequest, { params }: { params: Params }) {
     const { user } = params;
 
     const session = await getServerSession(authOptions);
-    if (!session || session?.user.role !== "ADMIN") {
+    if (!session || session?.user.role !== Role.ADMIN) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const userExists = await prisma.user.findUnique({
+    const userToDelete = await prisma.user.findUnique({
       where: { id: user },
     });
-    if (!userExists) {
+    if (!userToDelete) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
+    }
+
+    if (userToDelete.role === Role.ADMIN) {
+      return NextResponse.json(
+        { error: "Cannot delete an admin user" },
+        { status: 400 }
+      );
     }
 
     const deletedUser = await prisma.user.delete({
@@ -79,7 +88,7 @@ export async function DELETE(req: NextRequest, { params }: { params: Params }) {
 type UpdateUserData = {
   name?: string;
   description?: string;
-  role?: string;
+  role?: Role;
 };
 
 export async function PATCH(req: NextRequest, { params }: { params: Params }) {
@@ -105,7 +114,16 @@ export async function PATCH(req: NextRequest, { params }: { params: Params }) {
 
     if (data.name) updateData.name = data.name;
     if (data.description) updateData.description = data.description;
-    if (session.user.role === "ADMIN" && data.role) updateData.role = data.role;
+    if (session.user.role === Role.ADMIN && data.role)
+      updateData.role = data.role;
+    if (Object.values(Role).includes(data.role)) {
+      updateData.role = data.role;
+    } else {
+      return NextResponse.json(
+        { error: "Invalid role specified" },
+        { status: 400 }
+      );
+    }
 
     const updatedUser = await prisma.user.update({
       where: { id: user },

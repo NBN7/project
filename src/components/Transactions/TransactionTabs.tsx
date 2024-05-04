@@ -12,6 +12,7 @@ import { TRANSACTION_TABS } from "@/constants/tabs/transactionTabs";
 const renderTabs = (tab: TTab, pathname: string) => {
   return (
     <Link
+      data-disable-nprogress={true}
       key={tab.path}
       href={tab.path}
       className={`px-1 pb-4 pt-3 text-sm font-medium transition-colors duration-150 dark:hover:text-white hover:text-black focus-visible:outline

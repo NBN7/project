@@ -13,7 +13,7 @@ export const NAVBAR_ITEMS: TNavbarItem[] = [
     href: ROUTES.HOME,
   },
   {
-    label: "[App]",
+    label: "Transactions",
     icon: BsCurrencyDollar,
     href: ROUTES.TRANSACTIONS.ROOT,
   },
