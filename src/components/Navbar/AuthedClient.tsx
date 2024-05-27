@@ -71,8 +71,6 @@ export const AuthedClient = ({ session }: AuthedClientProps) => {
 
         {NAVBAR_ITEMS.map(renderNavbarItems)}
 
-        {/* <DropdownMenuSeparator /> */}
-
         <DropdownMenuItem onClick={() => signOut()}>
           <MdLogout className="mr-2 size-4" />
           <span>Log out</span>

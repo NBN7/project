@@ -34,6 +34,7 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
         type: true,
         description: true,
         date: true,
+        isForGoal: true,
       },
       orderBy: {
         date: "desc",
@@ -54,7 +55,7 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
 
 export async function POST(req: NextRequest, { params }: { params: Params }) {
   try {
-    const { description, type, amount, date } = await req.json();
+    const { description, type, amount, date, isForGoal } = await req.json();
     const { user } = params;
 
     const convertedAmount = Number(amount.toFixed(2));
@@ -78,28 +79,32 @@ export async function POST(req: NextRequest, { params }: { params: Params }) {
         type,
         amount: convertedAmount,
         date,
+        isForGoal,
       },
     });
 
-    // sum or subtract the amount from the user's balance
-    if (type === TransactionType.income) {
-      await prisma.user.update({
-        where: { id: user },
-        data: {
-          balance: {
-            increment: convertedAmount,
+    // if the transaction is not for a goal, update the user's balance
+    if (!isForGoal) {
+      // sum or subtract the amount from the user's balance
+      if (type === TransactionType.income) {
+        await prisma.user.update({
+          where: { id: user },
+          data: {
+            balance: {
+              increment: convertedAmount,
+            },
           },
-        },
-      });
-    } else {
-      await prisma.user.update({
-        where: { id: user },
-        data: {
-          balance: {
-            decrement: convertedAmount,
+        });
+      } else {
+        await prisma.user.update({
+          where: { id: user },
+          data: {
+            balance: {
+              decrement: convertedAmount,
+            },
           },
-        },
-      });
+        });
+      }
     }
 
     return NextResponse.json(transaction);

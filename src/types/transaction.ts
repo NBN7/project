@@ -6,6 +6,7 @@ export interface Transaction {
   type: TransactionType;
   date: string;
   description: string;
+  isForGoal: boolean;
 }
 
 export interface TransactionSummary {

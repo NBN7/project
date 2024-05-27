@@ -55,7 +55,7 @@ export default function UsagePage() {
       </article>
 
       <div className="w-full flex justify-start">
-        <Link href={ROUTES.DOCS.INTRODUCTION}>
+        <Link href={ROUTES.DOCS.ROOT}>
           <Button variant="outline">
             <IoChevronBack className="mr-2" />
             <span>Introduction</span>

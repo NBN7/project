@@ -38,11 +38,19 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
       },
     });
 
+    // delete goal if due date has passed and goal is not completed
+    for (const goal of goals) {
+      if (goal.dueDate < new Date() && !goal.completed) {
+        await prisma.goal.delete({ where: { id: goal.id } });
+      }
+    }
+
     // update saved amount for each goal
     for (const goal of goals) {
       const transactionSum = await prisma.transaction.aggregate({
         where: {
           userId: user,
+          isForGoal: true,
           date: {
             gte: goal.startDate.toISOString(),
             lte: goal.dueDate.toISOString(),

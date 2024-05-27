@@ -30,12 +30,12 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 
 import { TransactionType } from "@prisma/client";
 
 import { CalendarIcon } from "lucide-react";
 
-// import type { TransactionType } from "@/types/transaction";
 const TRANSACTION_TYPES: TransactionType[] = [
   TransactionType.income,
   TransactionType.expense,
@@ -48,13 +48,15 @@ export default function CreateTransactionPage() {
   const [type, setType] = useState<TransactionType>(TransactionType.income);
   const [amount, setAmount] = useState(0);
   const [date, setDate] = useState<Date | undefined>(new Date());
+  const [isForGoal, setIsForGoal] = useState(false);
 
   const { callCreateTransactionMutation, isPending } = useCreateTransaction({
     id: session?.user?.id as string,
     description,
-    type: type,
+    type,
     amount,
     date: date || new Date(),
+    isForGoal,
   });
 
   const handleCreateTransaction = async () => {
@@ -143,6 +145,19 @@ export default function CreateTransactionPage() {
                 />
               </PopoverContent>
             </Popover>
+
+            <div className="flex items-center space-x-2 mt-2">
+              <Checkbox
+                id="choose"
+                onCheckedChange={(checked: boolean) => setIsForGoal(checked)}
+              />
+              <label
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                htmlFor="choose"
+              >
+                For goals
+              </label>
+            </div>
           </div>
         </CardContent>
 

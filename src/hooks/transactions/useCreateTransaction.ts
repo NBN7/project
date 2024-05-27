@@ -12,6 +12,7 @@ interface CreateTransactionParams {
   type: TransactionType;
   amount: number;
   date: Date;
+  isForGoal: boolean;
 }
 
 export const useCreateTransaction = ({
@@ -20,12 +21,13 @@ export const useCreateTransaction = ({
   type,
   amount,
   date,
+  isForGoal,
 }: CreateTransactionParams) => {
   const queryClient = useQueryClient();
 
   const { mutate: callCreateTransactionMutation, isPending } = useMutation({
     mutationFn: () =>
-      createTransaction({ id, description, type, amount, date }),
+      createTransaction({ id, description, type, amount, date, isForGoal }),
     onSuccess: () => {
       toastCall("Transaction created successfully!");
       queryClient.invalidateQueries({ queryKey: ["transactions", id] });

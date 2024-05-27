@@ -1,7 +1,7 @@
 export const ROUTES = Object.freeze({
   AUTH: "/auth",
   DOCS: {
-    INTRODUCTION: "/docs",
+    ROOT: "/docs",
     USAGE: "/docs/usage",
   },
   HOME: "/",

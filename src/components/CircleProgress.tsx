@@ -26,6 +26,7 @@ export const CircleProgress = ({
   useEffect(() => {
     const updateProgress = () => {
       setDefaultValue((prev) => {
+        if (prev >= 100) return prev;
         if (prev < value) return prev + 1;
         if (prev > value) return prev - 1;
         return prev;

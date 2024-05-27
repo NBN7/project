@@ -72,28 +72,31 @@ export async function DELETE(req: NextRequest, { params }: { params: Params }) {
       );
     }
 
-    // if the transaction is an income decrement the user's balance
-    if (transactionExists.type === TransactionType.income) {
-      await prisma.user.update({
-        where: { id: user },
-        data: {
-          balance: {
-            decrement: transactionExists.amount,
+    // if the transaction is not for a goal, update the user's balance
+    if (!transactionExists.isForGoal) {
+      // if the transaction is an income decrement the user's balance
+      if (transactionExists.type === TransactionType.income) {
+        await prisma.user.update({
+          where: { id: user },
+          data: {
+            balance: {
+              decrement: transactionExists.amount,
+            },
           },
-        },
-      });
-    }
+        });
+      }
 
-    // if the transaction is an expense increment the user's balance
-    if (transactionExists.type === TransactionType.expense) {
-      await prisma.user.update({
-        where: { id: user },
-        data: {
-          balance: {
-            increment: transactionExists.amount,
+      // if the transaction is an expense increment the user's balance
+      if (transactionExists.type === TransactionType.expense) {
+        await prisma.user.update({
+          where: { id: user },
+          data: {
+            balance: {
+              increment: transactionExists.amount,
+            },
           },
-        },
-      });
+        });
+      }
     }
 
     await prisma.transaction.delete({
