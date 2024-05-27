@@ -7,7 +7,7 @@ import Link from "next/link";
 import type { TTab } from "@/types/tabs";
 import { GOALS_TABS } from "@/constants/tabs/goalsTabs";
 
-const renderTabs = (tab: TTab, pathname: string) => {
+const renderTab = (tab: TTab, pathname: string) => {
   return (
     <Link
       data-disable-nprogress={true}
@@ -35,7 +35,7 @@ export const GoalsTabs = () => {
   return (
     <div className="w-full">
       <div className="flex items-center space-x-8">
-        {GOALS_TABS.map((tab) => renderTabs(tab, pathname))}
+        {GOALS_TABS.map((tab) => renderTab(tab, pathname))}
       </div>
     </div>
   );

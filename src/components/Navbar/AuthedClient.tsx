@@ -23,7 +23,7 @@ import type { TNavbarItem } from "@/types/navbarItems";
 
 import { MdLogout } from "react-icons/md";
 
-const renderNavbarItems = (navbarItem: TNavbarItem) => (
+const renderNavbarItem = (navbarItem: TNavbarItem) => (
   <React.Fragment key={navbarItem.label}>
     {navbarItem.label === "Profile" ? <DropdownMenuSeparator /> : null}
 
@@ -69,7 +69,7 @@ export const AuthedClient = ({ session }: AuthedClientProps) => {
 
         <DropdownMenuSeparator />
 
-        {NAVBAR_ITEMS.map(renderNavbarItems)}
+        {NAVBAR_ITEMS.map(renderNavbarItem)}
 
         <DropdownMenuItem onClick={() => signOut()}>
           <MdLogout className="mr-2 size-4" />

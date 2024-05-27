@@ -10,7 +10,7 @@ import { ROUTES } from "@/constants/routes";
 
 import { IoChevronBack } from "react-icons/io5";
 
-const renderStepsContent = (content: TStepContent, index: number) => {
+const renderStepContent = (content: TStepContent, index: number) => {
   return (
     <li key={index}>
       <span>{content.title} </span>
@@ -21,14 +21,14 @@ const renderStepsContent = (content: TStepContent, index: number) => {
   );
 };
 
-const renderSteps = (step: TStep, index: number) => {
+const renderStep = (step: TStep, index: number) => {
   return (
     <li key={index}>
       <h3 className="font-semibold text-base mb-1">
         {index + 1}. {step.step}
       </h3>
 
-      <ul>{step.content.map(renderStepsContent)}</ul>
+      <ul>{step.content.map(renderStepContent)}</ul>
 
       <Separator className="sm:my-6 my-4" />
     </li>
@@ -50,7 +50,7 @@ export default function UsagePage() {
         </div>
 
         <ul className="space-y-4 mb-16 text-sm">
-          {STEPS.steps.map(renderSteps)}
+          {STEPS.steps.map(renderStep)}
         </ul>
       </article>
 

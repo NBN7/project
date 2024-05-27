@@ -13,7 +13,7 @@ import { TransactionsEmpty } from "./TransactionsEmpty";
 
 import type { Transaction } from "@/types/transaction";
 
-const renderTransactions = (transaction: Transaction) => {
+const renderTransaction = (transaction: Transaction) => {
   return (
     <Suspense key={transaction.id} fallback={<TransactionCardSkeleton />}>
       <TransactionCard transaction={transaction} />
@@ -38,7 +38,7 @@ export const TransactionsList = () => {
         {!transactions?.length ? (
           <TransactionsEmpty />
         ) : (
-          transactions?.map(renderTransactions)
+          transactions?.map(renderTransaction)
         )}
       </Card>
     </div>

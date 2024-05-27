@@ -9,7 +9,7 @@ import { twMerge } from "tailwind-merge";
 import type { TTab } from "@/types/tabs";
 import { TRANSACTION_TABS } from "@/constants/tabs/transactionTabs";
 
-const renderTabs = (tab: TTab, pathname: string) => {
+const renderTab = (tab: TTab, pathname: string) => {
   return (
     <Link
       data-disable-nprogress={true}
@@ -41,7 +41,7 @@ export const TransactionTabs = ({ className }: TransactionTabsProps) => {
   return (
     <div className={twMerge("w-full", className)}>
       <div className="flex items-center space-x-8">
-        {TRANSACTION_TABS.map((tab) => renderTabs(tab, pathname))}
+        {TRANSACTION_TABS.map((tab) => renderTab(tab, pathname))}
       </div>
     </div>
   );
