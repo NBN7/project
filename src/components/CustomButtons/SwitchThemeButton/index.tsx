@@ -84,9 +84,9 @@ export const SwitchThemeButton = () => {
     }
   }, [session, localTheme]);
 
-  if (!themeLoaded) {
-    return <SwitchThemeButtonSkeleton />;
-  }
+  // if (!themeLoaded) {
+  //   return <SwitchThemeButtonSkeleton />;
+  // }
 
   return (
     <Button
