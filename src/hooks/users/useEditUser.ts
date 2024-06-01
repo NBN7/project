@@ -33,8 +33,8 @@ export const useEditUser = ({
       queryClient.invalidateQueries({ queryKey: ["user"] });
       queryClient.invalidateQueries({ queryKey: ["users"] });
     },
-    onError: () => {
-      toastCall("Error editing user");
+    onError: (error) => {
+      toastCall(error.message);
     },
   });
 

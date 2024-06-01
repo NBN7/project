@@ -22,6 +22,12 @@ export const createTransaction = async ({
     method: "POST",
     body: JSON.stringify({ description, type, amount, date, isForGoal }),
   });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(`${response.status}: ${errorData.error}`);
+  }
+
   const data: Transaction = await response.json();
 
   return data;

@@ -26,14 +26,14 @@ export const CircleProgress = ({
   useEffect(() => {
     const updateProgress = () => {
       setDefaultValue((prev) => {
-        if (prev >= 100) return prev;
-        if (prev < value) return prev + 1;
-        if (prev > value) return prev - 1;
+        if (prev >= 100 && value >= 100) return 100;
+        if (prev < value) return Math.min(prev + 0.1, value);
+        if (prev > value) return Math.max(prev - 0.1, value);
         return prev;
       });
     };
 
-    requestRef.current = setInterval(updateProgress, 10);
+    requestRef.current = setInterval(updateProgress, 0.5);
 
     return () => {
       if (requestRef.current) clearInterval(requestRef.current);
@@ -81,7 +81,7 @@ export const CircleProgress = ({
           innerCircle
         )}
       >
-        {Math.round(defaultValue)}%
+        {defaultValue.toFixed(1)}%
       </div>
     </div>
   );

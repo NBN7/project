@@ -1,7 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-
 import { deleteUser } from "@/services/users/deleteUser";
-
 import { toastCall } from "@/utils/toastCall";
 
 interface UseDeleteUserParams {
@@ -17,8 +15,8 @@ export const useDeleteUser = ({ id }: UseDeleteUserParams) => {
       toastCall("User deleted successfully");
       queryClient.invalidateQueries({ queryKey: ["users"] });
     },
-    onError: () => {
-      toastCall("Error deleting user");
+    onError: (error) => {
+      toastCall(error.message);
     },
   });
 

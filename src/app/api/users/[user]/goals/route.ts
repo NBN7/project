@@ -99,6 +99,21 @@ export async function POST(req: NextRequest, { params }: { params: Params }) {
       return sessionCheck.response;
     }
 
+    // buscar transacciones de ingreso entre startDate y dueDate
+    const transactionSum = await prisma.transaction.aggregate({
+      where: {
+        userId: user,
+        date: {
+          gte: startDate,
+          lte: dueDate,
+        },
+        type: TransactionType.income,
+      },
+      _sum: {
+        amount: true,
+      },
+    });
+
     const newGoal = await prisma.goal.create({
       data: {
         userId: user,
@@ -106,6 +121,7 @@ export async function POST(req: NextRequest, { params }: { params: Params }) {
         amount,
         startDate,
         dueDate,
+        savedAmount: transactionSum._sum.amount || 0,
       },
     });
 

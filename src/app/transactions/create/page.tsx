@@ -65,6 +65,7 @@ export default function CreateTransactionPage() {
     setDescription("");
     setAmount(0);
     setDate(new Date());
+    setIsForGoal(false);
   };
 
   return (

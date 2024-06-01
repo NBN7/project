@@ -19,8 +19,8 @@ export const useDeleteGoal = ({ userId, goalId }: DeleteGoalParams) => {
       toastCall("Goal deleted successfully");
       queryClient.invalidateQueries({ queryKey: ["goals", userId] });
     },
-    onError: () => {
-      toastCall("Error deleting goal");
+    onError: (error) => {
+      toastCall(error.message);
     },
   });
 

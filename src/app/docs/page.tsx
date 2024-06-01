@@ -41,16 +41,16 @@ export default function DocsPage() {
 
         <div className="space-y-4 mb-16">
           <p>
-            <Gradient text="[App Name]" /> is more than just a number-tracking
-            tool; it's designed to facilitate thoughtful and strategic financial
-            management. Our user-friendly application not only helps you
-            understand your spending habits but also empowers you to achieve
-            your financial goals with ease and confidence.
+            <Gradient text="[Savings App]" /> is more than just a
+            number-tracking tool; it's designed to facilitate thoughtful and
+            strategic financial management. Our user-friendly application not
+            only helps you understand your spending habits but also empowers you
+            to achieve your financial goals with ease and confidence.
           </p>
 
           <p>
             Whether you're monitoring daily expenses or planning long-term
-            savings, <Gradient text="[App Name]" /> seamlessly fits your
+            savings, <Gradient text="[Savings App]" /> seamlessly fits your
             financial needs. Join us and simplify your financial management in
             ways you never imagined.
           </p>

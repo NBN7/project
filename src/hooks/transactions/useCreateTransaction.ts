@@ -33,8 +33,8 @@ export const useCreateTransaction = ({
       queryClient.invalidateQueries({ queryKey: ["transactions", id] });
       queryClient.invalidateQueries({ queryKey: ["goals", id] });
     },
-    onError: () => {
-      toastCall("Error creating transaction");
+    onError: (error) => {
+      toastCall(error.message);
     },
   });
 

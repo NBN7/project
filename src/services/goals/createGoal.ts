@@ -25,6 +25,12 @@ export const createGoal = async ({
       dueDate,
     }),
   });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(`${response.status}: ${errorData.error}`);
+  }
+
   const data = await response.json();
 
   return data;

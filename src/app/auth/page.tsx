@@ -5,18 +5,18 @@ export default function AuthPage() {
   return (
     <Container
       sectionClassName="mt-20 duration-500 animate-in fade-in-5 slide-in-from-bottom-2"
-      contentClassName="gap-4"
+      contentClassName="gap-2 sm:gap-4"
     >
       {/* title */}
-      <h1 className="text-4xl font-semibold text-pretty">
+      <h1 className="text-2xl sm:text-4xl font-semibold text-pretty">
         Welcome to{" "}
         <span className="from-[#0070F0] to-[#19cfff] bg-clip-text text-transparent bg-gradient-to-b">
-          [App]
+          [Savings App]
         </span>
       </h1>
 
       {/* description */}
-      <p className="text-xl dark:text-greydark text-greylight">
+      <p className="text-base sm:text-xl dark:text-greydark text-greylight">
         Sign In to do the most of the app.
       </p>
 

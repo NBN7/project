@@ -27,8 +27,8 @@ export const useCreateGoal = ({
       toastCall("Goal created successfully!");
       queryClient.invalidateQueries({ queryKey: ["goals", id] });
     },
-    onError: () => {
-      toastCall("Error creating goal");
+    onError: (error) => {
+      toastCall(error.message);
     },
   });
 

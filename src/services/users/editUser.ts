@@ -18,7 +18,13 @@ export const editUser = async ({
     },
     body: JSON.stringify({ name, role, description }),
   });
-  const data = response.json();
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(`${response.status}: ${errorData.error}`);
+  }
+
+  const data = await response.json();
 
   return data;
 };

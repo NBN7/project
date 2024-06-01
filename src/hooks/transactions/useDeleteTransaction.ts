@@ -23,8 +23,8 @@ export const useDeleteTransaction = ({
       queryClient.invalidateQueries({ queryKey: ["user"] });
       queryClient.invalidateQueries({ queryKey: ["goals"] });
     },
-    onError: () => {
-      toastCall("Error deleting transaction");
+    onError: (error) => {
+      toastCall(error.message);
     },
   });
 
