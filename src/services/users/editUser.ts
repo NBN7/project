@@ -2,7 +2,7 @@ interface EditUserParams {
   id: string;
   name: string | null;
   description: string | null;
-  role: string;
+  role: string | null;
 }
 
 export const editUser = async ({
