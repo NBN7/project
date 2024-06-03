@@ -23,7 +23,9 @@ export const NavbarComponent = () => {
         {pathname !== "/" && <GoBackButton />}
 
         <div className="w-full flex items-center justify-end">
-          <SwitchThemeButton />
+          <SwitchThemeButton
+            className={`${session?.user.role === Role.USER ? "mr-2" : null}`}
+          />
 
           {session?.user.role === Role.ADMIN && <DashboardButton />}
 

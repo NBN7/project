@@ -10,12 +10,18 @@ import { SwitchThemeButtonSkeleton } from "@/components/CustomButtons/SwitchThem
 
 import { Button } from "@/components/ui/button";
 
+import { twMerge } from "tailwind-merge";
+
 import { THEME } from "@/constants/theme";
 import type { TTheme } from "@/types/theme";
 
 import { IoSunny, IoMoon } from "react-icons/io5";
 
-export const SwitchThemeButton = () => {
+interface SwitchThemeButtonProps {
+  className?: string;
+}
+
+export const SwitchThemeButton = ({ className }: SwitchThemeButtonProps) => {
   const { data: session, update } = useSession();
 
   const [localTheme, setLocalTheme] = useState<TTheme | null>(() => {
@@ -91,7 +97,7 @@ export const SwitchThemeButton = () => {
   return (
     <Button
       variant="ghost"
-      className="rounded-full"
+      className={twMerge("rounded-full", className)}
       size="icon"
       onClick={toggleTheme}
     >
