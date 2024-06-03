@@ -20,12 +20,14 @@ interface EditProfileDialogProps {
   id: string;
   name: string;
   description: string;
+  role: string;
 }
 
 export const EditProfileDialog = ({
   id,
   name,
   description,
+  role,
 }: EditProfileDialogProps) => {
   const [inputName, setInputName] = useState(name ?? "");
   const [inputDescription, setInputDescription] = useState(description ?? "");
@@ -35,6 +37,7 @@ export const EditProfileDialog = ({
     id,
     name: inputName,
     description: inputDescription,
+    role,
   });
 
   const handleEditProfile = async () => {

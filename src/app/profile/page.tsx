@@ -51,6 +51,7 @@ export default function ProfilePage() {
           id={session?.user.id as string}
           name={user?.name as string}
           description={user?.description as string}
+          role={session?.user.role as string}
         />
       </Dialog>
     </Container>

@@ -6,7 +6,7 @@ interface UseEditUserParams {
   id: string;
   name?: string | null;
   description?: string | null;
-  role?: string | null;
+  role: string;
   updateSession?: () => void;
 }
 
@@ -24,7 +24,7 @@ export const useEditUser = ({
       editUser({
         id,
         name: name ? name : null,
-        role: role ? role : null,
+        role,
         description: description ? description : null,
       }),
     onSuccess: () => {
