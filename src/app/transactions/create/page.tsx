@@ -77,6 +77,12 @@ export default function CreateTransactionPage() {
     setIsForGoal(false);
   };
 
+  const handleSetDate = (date: Date) => {
+    setIsForGoal(false);
+    setGoalId(undefined);
+    setDate(date);
+  };
+
   const handleSwitchSetIsForGoal = (checked: boolean) => {
     setIsForGoal(checked);
 
@@ -153,7 +159,7 @@ export default function CreateTransactionPage() {
                 <Calendar
                   mode="single"
                   selected={date}
-                  onSelect={setDate}
+                  onSelect={(date) => handleSetDate(date as Date)}
                   disabled={(date) =>
                     date > new Date() || date < new Date("1900-01-01")
                   }
@@ -166,6 +172,7 @@ export default function CreateTransactionPage() {
               <div className="flex items-center space-x-2 mt-2 mb-2 duration-500 animate-in fade-in-5 slide-in-from-bottom-2">
                 <Checkbox
                   id="choose"
+                  checked={isForGoal}
                   onCheckedChange={(checked: boolean) =>
                     handleSwitchSetIsForGoal(checked)
                   }
