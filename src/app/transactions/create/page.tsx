@@ -79,6 +79,7 @@ export default function CreateTransactionPage() {
   };
 
   const handleSetDate = (date: Date) => {
+    setIsForGoal(false);
     setGoalId(undefined);
     setDate(date);
   };
