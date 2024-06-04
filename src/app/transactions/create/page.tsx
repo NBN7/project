@@ -122,7 +122,7 @@ export default function CreateTransactionPage() {
                       key={index}
                       value={transaction}
                     >
-                      {transaction}
+                      <span className="capitalize">{transaction}</span>
                     </SelectItem>
                   ))}
                 </SelectGroup>
@@ -192,7 +192,6 @@ export default function CreateTransactionPage() {
                         <SelectGroup>
                           {goals?.map((goal, index) => (
                             <SelectItem
-                              className="capitalize"
                               key={index}
                               value={goal.id}
                               disabled={
