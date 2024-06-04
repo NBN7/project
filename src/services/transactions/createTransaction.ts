@@ -8,6 +8,7 @@ interface CreateTransactionParams {
   amount: number;
   date: Date;
   isForGoal: boolean;
+  goalId?: string;
 }
 
 export const createTransaction = async ({
@@ -17,10 +18,18 @@ export const createTransaction = async ({
   amount,
   date,
   isForGoal,
+  goalId,
 }: CreateTransactionParams): Promise<Transaction> => {
   const response = await fetch(`/api/users/${id}/transactions`, {
     method: "POST",
-    body: JSON.stringify({ description, type, amount, date, isForGoal }),
+    body: JSON.stringify({
+      description,
+      type,
+      amount,
+      date,
+      isForGoal,
+      goalId,
+    }),
   });
 
   if (!response.ok) {

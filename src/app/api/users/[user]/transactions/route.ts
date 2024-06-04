@@ -55,7 +55,8 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
 
 export async function POST(req: NextRequest, { params }: { params: Params }) {
   try {
-    const { description, type, amount, date, isForGoal } = await req.json();
+    const { description, type, amount, date, isForGoal, goalId } =
+      await req.json();
     const { user } = params;
 
     const convertedAmount = Number(amount.toFixed(2));
@@ -80,6 +81,7 @@ export async function POST(req: NextRequest, { params }: { params: Params }) {
         amount: convertedAmount,
         date,
         isForGoal,
+        goalId: isForGoal ? goalId : undefined,
       },
     });
 

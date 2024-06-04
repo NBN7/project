@@ -6,6 +6,8 @@ import { useSession } from "next-auth/react";
 
 import { useCreateTransaction } from "@/hooks/transactions/useCreateTransaction";
 
+import { useGetGoals } from "@/hooks/goals";
+
 import {
   Card,
   CardContent,
@@ -43,12 +45,14 @@ const TRANSACTION_TYPES: TransactionType[] = [
 
 export default function CreateTransactionPage() {
   const { data: session } = useSession();
+  const { data: goals } = useGetGoals(session?.user?.id as string);
 
   const [description, setDescription] = useState("");
   const [type, setType] = useState<TransactionType>(TransactionType.income);
   const [amount, setAmount] = useState(0);
   const [date, setDate] = useState<Date | undefined>(new Date());
   const [isForGoal, setIsForGoal] = useState(false);
+  const [goalId, setGoalId] = useState<string | undefined>(undefined);
 
   const { callCreateTransactionMutation, isPending } = useCreateTransaction({
     id: session?.user?.id as string,
@@ -57,6 +61,7 @@ export default function CreateTransactionPage() {
     amount,
     date: date || new Date(),
     isForGoal,
+    goalId,
   });
 
   const handleCreateTransaction = async () => {
@@ -66,6 +71,12 @@ export default function CreateTransactionPage() {
     setAmount(0);
     setDate(new Date());
     setIsForGoal(false);
+  };
+
+  const handleSwitchSetIsForGoal = (checked: boolean) => {
+    setIsForGoal(checked);
+
+    if (!checked) setGoalId(undefined);
   };
 
   return (
@@ -147,10 +158,12 @@ export default function CreateTransactionPage() {
               </PopoverContent>
             </Popover>
 
-            <div className="flex items-center space-x-2 mt-2">
+            <div className="flex items-center space-x-2 mt-2 mb-2">
               <Checkbox
                 id="choose"
-                onCheckedChange={(checked: boolean) => setIsForGoal(checked)}
+                onCheckedChange={(checked: boolean) =>
+                  handleSwitchSetIsForGoal(checked)
+                }
               />
               <label
                 className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -159,6 +172,35 @@ export default function CreateTransactionPage() {
                 For goals
               </label>
             </div>
+
+            {isForGoal && (
+              <div className="duration-500 animate-in fade-in-5 slide-in-from-bottom-2">
+                <Select onValueChange={(goal) => setGoalId(goal)}>
+                  <SelectTrigger className="w-[180px] focus:ring-transparent">
+                    <SelectValue placeholder="Select goal" />
+                  </SelectTrigger>
+
+                  <SelectContent>
+                    <SelectGroup>
+                      {goals?.map((goal, index) => (
+                        <SelectItem
+                          className="capitalize"
+                          key={index}
+                          value={goal.id}
+                          disabled={
+                            goal.completed ||
+                            date!.toISOString() < goal.startDate ||
+                            date!.toISOString() > goal.dueDate
+                          }
+                        >
+                          {goal.title}
+                        </SelectItem>
+                      ))}
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
           </div>
         </CardContent>
 
@@ -170,7 +212,8 @@ export default function CreateTransactionPage() {
               amount <= 0 ||
               !amount ||
               !date ||
-              isPending
+              isPending ||
+              (isForGoal && !goalId)
             }
             className="w-full"
             onClick={handleCreateTransaction}

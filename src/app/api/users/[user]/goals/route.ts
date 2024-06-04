@@ -51,6 +51,7 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
         where: {
           userId: user,
           isForGoal: true,
+          goalId: goal.id,
           date: {
             gte: goal.startDate.toISOString(),
             lte: goal.dueDate.toISOString(),

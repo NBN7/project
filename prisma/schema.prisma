@@ -85,6 +85,9 @@ model Transaction {
   userId      String
   isForGoal   Boolean         @default(false)
   user        User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  goalId String?
+  goal   Goal?   @relation(fields: [goalId], references: [id])
 }
 
 model Goal {
@@ -96,5 +99,7 @@ model Goal {
   dueDate     DateTime
   completed   Boolean  @default(false)
   userId      String
-  user        User     @relation(fields: [userId], references: [id])
+
+  user         User          @relation(fields: [userId], references: [id])
+  transactions Transaction[]
 }

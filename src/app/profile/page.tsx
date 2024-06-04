@@ -25,7 +25,7 @@ export default function ProfilePage() {
       <Dialog>
         <div className="w-full">
           <div className="w-full flex items-center justify-between">
-            <Avatar className="size-28 border-2 border-black">
+            <Avatar className="size-28 border-2 dark:border-black">
               <AvatarImage src={user?.image} alt={user?.name} />
               <AvatarFallback>
                 {getUsernameAbbreviation(user?.name ?? "")}
