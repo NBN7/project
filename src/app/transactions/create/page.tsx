@@ -162,20 +162,22 @@ export default function CreateTransactionPage() {
               </PopoverContent>
             </Popover>
 
-            <div className="flex items-center space-x-2 mt-2 mb-2">
-              <Checkbox
-                id="choose"
-                onCheckedChange={(checked: boolean) =>
-                  handleSwitchSetIsForGoal(checked)
-                }
-              />
-              <label
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                htmlFor="choose"
-              >
-                For goals
-              </label>
-            </div>
+            {type === TransactionType.income && (
+              <div className="flex items-center space-x-2 mt-2 mb-2 duration-500 animate-in fade-in-5 slide-in-from-bottom-2">
+                <Checkbox
+                  id="choose"
+                  onCheckedChange={(checked: boolean) =>
+                    handleSwitchSetIsForGoal(checked)
+                  }
+                />
+                <label
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  htmlFor="choose"
+                >
+                  For goals
+                </label>
+              </div>
+            )}
 
             {isForGoal && (
               <>
