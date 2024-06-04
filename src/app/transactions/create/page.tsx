@@ -8,6 +8,8 @@ import { useCreateTransaction } from "@/hooks/transactions/useCreateTransaction"
 
 import { useGetGoals } from "@/hooks/goals";
 
+import Link from "next/link";
+
 import {
   Card,
   CardContent,
@@ -33,6 +35,8 @@ import {
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+
+import { ROUTES } from "@/constants/routes";
 
 import { TransactionType } from "@prisma/client";
 
@@ -174,32 +178,47 @@ export default function CreateTransactionPage() {
             </div>
 
             {isForGoal && (
-              <div className="duration-500 animate-in fade-in-5 slide-in-from-bottom-2">
-                <Select onValueChange={(goal) => setGoalId(goal)}>
-                  <SelectTrigger className="w-[180px] focus:ring-transparent">
-                    <SelectValue placeholder="Select goal" />
-                  </SelectTrigger>
+              <>
+                {goals?.length ? (
+                  <div className="duration-500 animate-in fade-in-5 slide-in-from-bottom-2">
+                    <Select onValueChange={(goal) => setGoalId(goal)}>
+                      <SelectTrigger className="w-[180px] focus:ring-transparent">
+                        <SelectValue placeholder="Select goal" />
+                      </SelectTrigger>
 
-                  <SelectContent>
-                    <SelectGroup>
-                      {goals?.map((goal, index) => (
-                        <SelectItem
-                          className="capitalize"
-                          key={index}
-                          value={goal.id}
-                          disabled={
-                            goal.completed ||
-                            date!.toISOString() < goal.startDate ||
-                            date!.toISOString() > goal.dueDate
-                          }
-                        >
-                          {goal.title}
-                        </SelectItem>
-                      ))}
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-              </div>
+                      <SelectContent>
+                        <SelectGroup>
+                          {goals?.map((goal, index) => (
+                            <SelectItem
+                              className="capitalize"
+                              key={index}
+                              value={goal.id}
+                              disabled={
+                                goal.completed ||
+                                date!.toISOString() < goal.startDate ||
+                                date!.toISOString() > goal.dueDate
+                              }
+                            >
+                              {goal.title}
+                            </SelectItem>
+                          ))}
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                ) : (
+                  <p className="dark:text-greydark text-greylight">
+                    You must create a{" "}
+                    <Link
+                      href={ROUTES.GOALS.ROOT}
+                      className="dark:text-darkmode text-lightmode hover:underline"
+                    >
+                      goal
+                    </Link>{" "}
+                    first.
+                  </p>
+                )}
+              </>
             )}
           </div>
         </CardContent>
