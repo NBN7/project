@@ -17,7 +17,7 @@ export default function TransactionsPage() {
     session?.user?.id as string
   );
 
-  const formattedBalance = formatNumber(user?.balance as number, "es-ES");
+  const formattedBalance = formatNumber(user?.balance as number);
 
   return (
     <div className="w-full flex flex-col items-center duration-500 animate-in fade-in-5 slide-in-from-bottom-2">

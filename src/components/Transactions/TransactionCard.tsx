@@ -26,7 +26,7 @@ const circle = (
 );
 
 const TransactionCard = ({ transaction }: TransactionCardProps) => {
-  const formattedAmount = formatNumber(transaction.amount, "es-ES");
+  const formattedAmount = formatNumber(transaction.amount);
 
   return (
     <TooltipProvider>

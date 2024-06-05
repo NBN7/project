@@ -79,9 +79,7 @@ export default function CreateTransactionPage() {
   };
 
   const handleSetAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-
-    setAmount(parseFloat(value));
+    setAmount(parseFloat(e.target.value));
   };
 
   const handleSetDate = (date: Date) => {
