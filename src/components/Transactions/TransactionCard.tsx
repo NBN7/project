@@ -12,6 +12,8 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
+import { formatNumber } from "@/utils/formatNumber";
+
 interface TransactionCardProps {
   transaction: Transaction;
 }
@@ -24,6 +26,8 @@ const circle = (
 );
 
 const TransactionCard = ({ transaction }: TransactionCardProps) => {
+  const formattedAmount = formatNumber(transaction.amount, "es-ES");
+
   return (
     <TooltipProvider>
       <Tooltip>
@@ -44,8 +48,7 @@ const TransactionCard = ({ transaction }: TransactionCardProps) => {
                   {transaction.isForGoal ? circle : ""}
 
                   <p className="ml-2 font-semibold">
-                    {transaction.type === "expense" && "-"}{" "}
-                    {transaction.amount.toFixed(2)}
+                    {transaction.type === "expense" && "-"} {formattedAmount}
                   </p>
                 </div>
               </div>

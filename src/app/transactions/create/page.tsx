@@ -78,6 +78,12 @@ export default function CreateTransactionPage() {
     setGoalId(undefined);
   };
 
+  const handleSetAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+
+    setAmount(parseFloat(value));
+  };
+
   const handleSetDate = (date: Date) => {
     setIsForGoal(false);
     setGoalId(undefined);
@@ -142,7 +148,7 @@ export default function CreateTransactionPage() {
               placeholder="Amount"
               name="amount"
               type="number"
-              onChange={(e) => setAmount(parseFloat(e.target.value))}
+              onChange={handleSetAmount}
             />
 
             <Popover>
