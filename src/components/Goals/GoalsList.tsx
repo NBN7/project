@@ -32,9 +32,9 @@ export const GoalsList = ({ goalType }: GoalsListProps) => {
   const selectedGoals =
     goalType === "uncompleted" ? uncompletedGoals : completedGoals;
 
-  useEffect(() => {
-    refetch();
-  }, [session, refetch]);
+  // useEffect(() => {
+  //   refetch();
+  // }, [session, refetch]);
 
   return (
     <>
