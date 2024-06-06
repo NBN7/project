@@ -1,6 +1,4 @@
-"use client";
-
-import { useEffect, lazy, Suspense } from "react";
+import { lazy, Suspense } from "react";
 import { useSession } from "next-auth/react";
 import { useGetGoals } from "@/hooks/goals/useGetGoals";
 
@@ -24,17 +22,13 @@ interface GoalsListProps {
 
 export const GoalsList = ({ goalType }: GoalsListProps) => {
   const { data: session } = useSession();
-  const { data: goals, refetch } = useGetGoals(session?.user.id as string);
+  const { data: goals } = useGetGoals(session?.user.id as string);
 
   const uncompletedGoals = goals?.filter((goal) => !goal.completed) || [];
   const completedGoals = goals?.filter((goal) => goal.completed) || [];
 
   const selectedGoals =
     goalType === "uncompleted" ? uncompletedGoals : completedGoals;
-
-  // useEffect(() => {
-  //   refetch();
-  // }, [session, refetch]);
 
   return (
     <>
