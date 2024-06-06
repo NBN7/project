@@ -1,3 +1,5 @@
+"use client";
+
 import { lazy, Suspense } from "react";
 import { useSession } from "next-auth/react";
 import { useGetGoals } from "@/hooks/goals/useGetGoals";
