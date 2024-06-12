@@ -84,7 +84,15 @@ export default function CreateGoalPage() {
   };
 
   const isDisabled = () => {
-    return !title || amount <= 0 || !amount || !date || !date.from || !date.to;
+    return (
+      !title ||
+      !title.trim().length ||
+      amount <= 0 ||
+      !amount ||
+      !date ||
+      !date.from ||
+      !date.to
+    );
   };
 
   return (

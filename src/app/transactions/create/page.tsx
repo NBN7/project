@@ -94,6 +94,19 @@ export default function CreateTransactionPage() {
     if (!checked) setGoalId(undefined);
   };
 
+  const isDisabled = () => {
+    return (
+      !description ||
+      !description.trim().length ||
+      !type ||
+      amount <= 0 ||
+      !amount ||
+      !date ||
+      isPending ||
+      (isForGoal && !goalId)
+    );
+  };
+
   return (
     <div className="w-full duration-500 animate-in fade-in-5 slide-in-from-bottom-2">
       <Card>
@@ -238,15 +251,7 @@ export default function CreateTransactionPage() {
 
         <CardFooter>
           <Button
-            disabled={
-              !description ||
-              !type ||
-              amount <= 0 ||
-              !amount ||
-              !date ||
-              isPending ||
-              (isForGoal && !goalId)
-            }
+            disabled={isDisabled()}
             className="w-full"
             onClick={handleCreateTransaction}
           >
