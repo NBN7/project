@@ -57,7 +57,7 @@ export const STEPS: TSteps = Object.freeze({
         {
           title: "Data export:",
           description:
-            'Download your transaction details as a JSON file from the "Profile" section.',
+            'Download your transaction details as a JSON or CSV file from the "Profile" section.',
         },
       ],
     },

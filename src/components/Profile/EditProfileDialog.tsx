@@ -46,6 +46,16 @@ export const EditProfileDialog = ({
     setConfirm("");
   };
 
+  const isDisabled = () => {
+    return (
+      !inputName.length ||
+      !inputDescription.length ||
+      !inputDescription.trim().length ||
+      (inputName === name && inputDescription === description) ||
+      confirm.toLowerCase() !== "edit"
+    );
+  };
+
   useEffect(() => {
     setInputName(name ?? "");
     setInputDescription(description ?? "");
@@ -94,12 +104,7 @@ export const EditProfileDialog = ({
       <DialogFooter>
         <DialogClose asChild>
           <Button
-            disabled={
-              !inputName.length ||
-              !inputDescription.length ||
-              (inputName === name && inputDescription === description) ||
-              confirm.toLowerCase() !== "edit"
-            }
+            disabled={isDisabled()}
             className="w-full"
             onClick={handleEditProfile}
           >

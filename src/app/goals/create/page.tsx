@@ -83,6 +83,10 @@ export default function CreateGoalPage() {
     setDate(defaultSelected);
   };
 
+  const isDisabled = () => {
+    return !title || amount <= 0 || !amount || !date || !date.from || !date.to;
+  };
+
   return (
     <div className="w-full duration-500 animate-in fade-in-5 slide-in-from-bottom-2">
       <Card>
@@ -143,14 +147,7 @@ export default function CreateGoalPage() {
 
         <CardFooter>
           <Button
-            disabled={
-              !title ||
-              amount <= 0 ||
-              !amount ||
-              !date ||
-              !date.from ||
-              !date.to
-            }
+            disabled={isDisabled()}
             className="w-full"
             onClick={handleCreateGoal}
           >

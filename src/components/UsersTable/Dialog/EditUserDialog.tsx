@@ -62,6 +62,15 @@ export const EditUserDialog = ({ user }: EditUserDialogProps) => {
     callEditUserMutation();
   };
 
+  const isDisabled = () => {
+    return (
+      !confirm.length ||
+      !name ||
+      (name === user.name && role === user.role) ||
+      confirm !== "edit"
+    );
+  };
+
   return (
     <>
       <DialogHeader>
@@ -113,12 +122,7 @@ export const EditUserDialog = ({ user }: EditUserDialogProps) => {
       <DialogFooter>
         <DialogClose asChild>
           <Button
-            disabled={
-              !confirm.length ||
-              !name ||
-              (name === user.name && role === user.role) ||
-              confirm !== "edit"
-            }
+            disabled={isDisabled()}
             className="w-full"
             onClick={handleSaveChanges}
           >

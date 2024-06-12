@@ -27,6 +27,10 @@ export const DeleteUserDialog = ({ id }: DeleteUserDialogProps) => {
     callDeleteUserMutation();
   };
 
+  const isDisabled = () => {
+    return !confirm.length || confirm !== "delete";
+  };
+
   return (
     <>
       <DialogHeader>
@@ -48,7 +52,7 @@ export const DeleteUserDialog = ({ id }: DeleteUserDialogProps) => {
       <DialogFooter>
         <DialogClose asChild>
           <Button
-            disabled={!confirm.length || confirm !== "delete"}
+            disabled={isDisabled()}
             className="w-full"
             onClick={handleDeleteClick}
           >

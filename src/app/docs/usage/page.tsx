@@ -36,6 +36,8 @@ const renderStep = (step: TStep, index: number) => {
 };
 
 export default function UsagePage() {
+  const { steps } = STEPS;
+
   return (
     <div className="duration-500 animate-in fade-in-5 slide-in-from-bottom-2">
       <article className="w-full mt-5">
@@ -49,9 +51,7 @@ export default function UsagePage() {
           </p>
         </div>
 
-        <ul className="space-y-4 mb-16 text-sm">
-          {STEPS.steps.map(renderStep)}
-        </ul>
+        <ul className="space-y-4 mb-16 text-sm">{steps.map(renderStep)}</ul>
       </article>
 
       <div className="w-full flex justify-start">
