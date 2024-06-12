@@ -8,9 +8,20 @@ import { useGetTransactions } from "@/hooks/transactions";
 
 import { twMerge } from "tailwind-merge";
 
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
-import { toastCall } from "@/utils/toastCall";
+import { downloadJSONTransactions } from "@/utils/transactions/downloadJSONTransactions";
+import { downloadCSVTransactions } from "@/utils/transactions/downloadCSVTransactions";
+
+import { DOWNLOAD } from "@/constants/download";
+import { TDownload } from "@/types/download";
+
 import { DownloadIcon } from "lucide-react";
 
 interface DownloadTransactionsButtonProps {
@@ -26,44 +37,46 @@ export const DownloadTransactionsButton = ({
 
   const { data: transactions } = useGetTransactions(session?.user.id as string);
 
-  const handleDownloadTransactions = async () => {
+  const handleDownloadTransactions = async (downloadType: TDownload) => {
     setIsLoading(true);
 
-    try {
-      // create a blob with the transactions data as json
-      const blob = new Blob([JSON.stringify(transactions)], {
-        type: "application/json",
-      });
-      // create a temporary url for the blob
-      const url = URL.createObjectURL(blob);
-      // create an anchor element which is not added to the dom
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "transactions.json";
-      a.click();
+    if (downloadType === DOWNLOAD.JSON) await downloadJSONTransactions(transactions);
+    if (downloadType === DOWNLOAD.CSV) await downloadCSVTransactions(transactions);
 
-      // revoke the object url to free up memory
-      URL.revokeObjectURL(url);
-      toastCall("Transactions exported successfully");
-    } catch (error) {
-      toastCall("Failed to export transactions");
-    } finally {
-      setIsLoading(false);
-    }
+    setIsLoading(false);
   };
 
   return (
-    <Button
-      className={twMerge(className)}
-      variant="outline"
-      onClick={handleDownloadTransactions}
-      disabled={isLoading}
-    >
-      <DownloadIcon
-        size={16}
-        className="mr-2 dark:text-icondark text-iconlight"
-      />
-      <span>Export transactions</span>
-    </Button>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button
+          className={twMerge(className)}
+          variant="outline"
+          disabled={isLoading}
+        >
+          <DownloadIcon
+            size={16}
+            className="mr-2 dark:text-icondark text-iconlight"
+          />
+          <span>Export transactions</span>
+        </Button>
+      </DropdownMenuTrigger>
+
+      <DropdownMenuContent
+        onCloseAutoFocus={(e) => e.preventDefault()}
+        align="start"
+        className="w-[186px]"
+      >
+        {Object.keys(DOWNLOAD).map((key) => (
+          <DropdownMenuItem
+            key={key}
+            onClick={() => handleDownloadTransactions(key as TDownload)}
+            disabled={isLoading}
+          >
+            {key}
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 };
