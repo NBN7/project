@@ -1,4 +1,4 @@
-import type { TFaq } from "@/types/faq";
+import type { TFaq } from "@/types";
 
 export const FAQ: TFaq[] = [
   {

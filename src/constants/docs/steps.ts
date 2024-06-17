@@ -1,4 +1,4 @@
-import { TSteps } from "@/types/steps";
+import { TSteps } from "@/types";
 
 export const STEPS: TSteps = Object.freeze({
   steps: [

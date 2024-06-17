@@ -1,4 +1,4 @@
-import type { TTab } from "@/types/tabs";
+import type { TTab } from "@/types";
 
 import { ROUTES } from "@/constants/routes";
 
