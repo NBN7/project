@@ -1,7 +1,10 @@
 "use client";
 
-import { lazy, Suspense } from "react";
+import { useRef, useEffect, lazy, Suspense } from "react";
 import { useSession } from "next-auth/react";
+
+import autoAnimate from "@formkit/auto-animate";
+
 import { useGetGoals } from "@/hooks/goals/useGetGoals";
 
 const GoalCard = lazy(() => import("./GoalCard"));
@@ -23,6 +26,8 @@ interface GoalsListProps {
 }
 
 export const GoalsList = ({ goalType }: GoalsListProps) => {
+  const parent = useRef(null);
+
   const { data: session } = useSession();
   const { data: goals } = useGetGoals(session?.user.id as string);
 
@@ -32,15 +37,19 @@ export const GoalsList = ({ goalType }: GoalsListProps) => {
   const selectedGoals =
     goalType === "uncompleted" ? uncompletedGoals : completedGoals;
 
+  useEffect(() => {
+    parent.current && autoAnimate(parent.current);
+  }, [parent]);
+
   return (
     <>
       <h3 className="text-2xl font-semibold mb-2 capitalize">{goalType}</h3>
 
-      <div className="grid sm:grid-cols-2 gap-2">
-        {selectedGoals && selectedGoals.length > 0 ? (
-          selectedGoals.map(renderGoal)
-        ) : (
+      <div ref={parent} className="grid sm:grid-cols-2 gap-2">
+        {!selectedGoals.length ? (
           <GoalsEmpty goalType={goalType} />
+        ) : (
+          selectedGoals.map(renderGoal)
         )}
       </div>
     </>
