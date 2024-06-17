@@ -3,7 +3,7 @@ import { AiOutlineUser } from "react-icons/ai";
 import { BsCurrencyDollar } from "react-icons/bs";
 import { GoGoal } from "react-icons/go";
 
-import type { TNavbarItem } from "@/types/navbarItems";
+import type { TNavbarItem } from "@/types/navbarItem";
 import { ROUTES } from "@/constants/routes";
 
 export const NAVBAR_ITEMS: TNavbarItem[] = [

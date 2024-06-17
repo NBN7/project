@@ -19,7 +19,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import type { Session } from "next-auth";
 
 import { NAVBAR_ITEMS } from "@/constants/navbarItems";
-import type { TNavbarItem } from "@/types/navbarItems";
+import type { TNavbarItem } from "@/types/navbarItem";
 
 import { MdLogout } from "react-icons/md";
 
