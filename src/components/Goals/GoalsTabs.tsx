@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 
 import Link from "next/link";
 
-import type { TTab } from "@/types/tabs";
+import type { TTab } from "@/types";
 import { GOALS_TABS } from "@/constants/tabs/goalsTabs";
 
 const renderTab = (tab: TTab, pathname: string) => {

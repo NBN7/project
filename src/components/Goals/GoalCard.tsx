@@ -6,7 +6,7 @@ import { Dialog, DialogTrigger, DialogContent } from "../ui/dialog";
 
 import { transformToShortDate } from "@/utils/date";
 
-import type { TGoal } from "@/types/goals";
+import type { TGoal } from "@/types";
 
 interface GoalCardProps {
   goal: TGoal;

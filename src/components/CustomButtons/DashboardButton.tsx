@@ -15,7 +15,7 @@ export const DashboardButton = () => {
   const pathname = usePathname();
 
   const handleDashboardClick = (e: MouseEvent<HTMLButtonElement>) => {
-    if (pathname === "/dashboard") {
+    if (pathname === ROUTES.DASHBOARD) {
       e.preventDefault();
       return;
     }

@@ -11,7 +11,7 @@ const GoalCard = lazy(() => import("./GoalCard"));
 import { GoalCardSkeleton } from "./GoalCardSkeleton";
 import { GoalsEmpty } from "./GoalsEmpty";
 
-import type { TGoal } from "@/types/goals";
+import type { TGoal } from "@/types";
 
 const renderGoal = (goal: TGoal) => {
   return (

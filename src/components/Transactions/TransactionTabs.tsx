@@ -6,7 +6,7 @@ import Link from "next/link";
 
 import { twMerge } from "tailwind-merge";
 
-import type { TTab } from "@/types/tabs";
+import type { TTab } from "@/types";
 import { TRANSACTION_TABS } from "@/constants/tabs/transactionTabs";
 
 const renderTab = (tab: TTab, pathname: string) => {
