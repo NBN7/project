@@ -43,20 +43,13 @@ const defaultSelected = {
 };
 
 const formatDateDisplay = (date: DateRange) => {
-  if (!date) {
-    return "Date range";
-  }
-  if (date.from && date.to) {
-    return `${transformToShortDate(date.from)} - ${transformToShortDate(
-      date.to
-    )}`;
-  }
-  if (date.from && !date.to) {
-    return `${transformToShortDate(date.from)} - Select due date`;
-  }
-  if (!date.from) {
-    return "Select start date";
-  }
+  if (!date) return "Date range";
+
+  if (date.from && date.to) return `${transformToShortDate(date.from)} - ${transformToShortDate(date.to)}`;
+
+  if (date.from && !date.to) return `${transformToShortDate(date.from)} - Select due date`;
+
+  if (!date.from) return "Select start date";
 };
 
 export default function CreateGoalPage() {
