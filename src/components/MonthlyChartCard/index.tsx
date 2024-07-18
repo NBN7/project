@@ -5,8 +5,6 @@ interface MonthlyChartProps {
   id: string;
 }
 
-interface MonthlyChartProps {}
-
 export const MonthlyChartCard = ({ id }: MonthlyChartProps) => {
   return (
     <Card className="mt-10 space-y-6">
