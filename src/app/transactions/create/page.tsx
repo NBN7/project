@@ -204,7 +204,7 @@ export default function CreateTransactionPage() {
               </div>
             )}
 
-            {isForGoal && (
+            {isForGoal && type === TransactionType.income && (
               <>
                 {goals?.length ? (
                   <div className="duration-500 animate-in fade-in-5 slide-in-from-bottom-2">
