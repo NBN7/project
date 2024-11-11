@@ -87,7 +87,7 @@ export const EditProfileDialog = ({
         maxLength={32}
         autoComplete="off"
         placeholder="Description"
-        className="focus-visible:ring-offset-0 focus-visible:ring-0"
+        className="focus-visible:ring-offset-0 focus-visible:ring-0 resize-none"
         value={inputDescription}
         name="description"
         onChange={(e) => setInputDescription(e.target.value)}
