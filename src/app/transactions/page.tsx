@@ -28,7 +28,16 @@ export default function TransactionsPage() {
         <Skeleton className="flex rounded-full w-[100px] h-[40px]" />
       ) : (
         // <p className="text-4xl font-semibold">${formattedBalance}</p>
-        <NumberFlow value={parseFloat(formattedBalance)} />
+        <NumberFlow
+          className="text-4xl font-semibold"
+          format={{
+            style: "currency",
+            currency: "USD",
+            trailingZeroDisplay: "stripIfInteger",
+          }}
+          suffix="/mo"
+          value={parseFloat(formattedBalance)}
+        />
       )}
 
       <TransactionsList />
