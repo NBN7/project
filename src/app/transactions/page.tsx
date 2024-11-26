@@ -10,6 +10,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 import { formatNumber } from "@/utils/formatNumber";
 
+import NumberFlow from "@number-flow/react";
+
 export default function TransactionsPage() {
   const { data: session } = useSession();
 
@@ -25,7 +27,8 @@ export default function TransactionsPage() {
       {isUserLoading ? (
         <Skeleton className="flex rounded-full w-[100px] h-[40px]" />
       ) : (
-        <p className="text-4xl font-semibold">${formattedBalance}</p>
+        // <p className="text-4xl font-semibold">${formattedBalance}</p>
+        <NumberFlow value={parseFloat(formattedBalance)} />
       )}
 
       <TransactionsList />
