@@ -30,7 +30,10 @@ export const DeleteTransactionDialog = ({ id }: DeleteDialog) => {
     transactionId: id,
   });
 
-  const handleDelete = () => callDeleteTransactionMutation();
+  const handleDelete = (e: React.FormEvent) => {
+    e.preventDefault();
+    callDeleteTransactionMutation();
+  };
 
   const isDisabled = () => {
     return !confirm.length || confirm !== "delete";
@@ -46,7 +49,7 @@ export const DeleteTransactionDialog = ({ id }: DeleteDialog) => {
         </DialogDescription>
       </DialogHeader>
 
-      <form id="delete-transaction-form" onSubmit={handleDelete}>
+      <form id="delete-transaction-form" onSubmit={(e) => handleDelete(e)}>
         <Input
           autoComplete="off"
           className="focus-visible:ring-offset-0 focus-visible:ring-0"

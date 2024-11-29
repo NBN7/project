@@ -40,7 +40,8 @@ export const EditProfileDialog = ({
     role,
   });
 
-  const handleEditProfile = async () => {
+  const handleEditProfile = async (e: React.FormEvent) => {
+    e.preventDefault();
     await callEditUserMutation();
 
     setConfirm("");
@@ -71,39 +72,41 @@ export const EditProfileDialog = ({
         </DialogDescription>
       </DialogHeader>
 
-      <Input
-        maxLength={32}
-        autoComplete="off"
-        placeholder="Name"
-        className="focus-visible:ring-offset-0 focus-visible:ring-0"
-        value={inputName}
-        name="name"
-        onChange={(e) => setInputName(e.target.value)}
-      />
-      <Textarea
-        maxLength={32}
-        autoComplete="off"
-        placeholder="Description"
-        className="focus-visible:ring-offset-0 focus-visible:ring-0 resize-none"
-        value={inputDescription}
-        name="description"
-        onChange={(e) => setInputDescription(e.target.value)}
-      />
+      <form id="edit-profile-form" onSubmit={(e) => handleEditProfile(e)}>
+        <Input
+          maxLength={32}
+          autoComplete="off"
+          placeholder="Name"
+          className="focus-visible:ring-offset-0 focus-visible:ring-0"
+          value={inputName}
+          name="name"
+          onChange={(e) => setInputName(e.target.value)}
+        />
+        <Textarea
+          maxLength={32}
+          autoComplete="off"
+          placeholder="Description"
+          className="focus-visible:ring-offset-0 focus-visible:ring-0 resize-none"
+          value={inputDescription}
+          name="description"
+          onChange={(e) => setInputDescription(e.target.value)}
+        />
 
-      <Input
-        autoComplete="off"
-        className="focus-visible:ring-offset-0 focus-visible:ring-0"
-        placeholder={`Type "edit" to confirm`}
-        name="confirm"
-        onChange={(e) => setConfirm(e.target.value.toLowerCase())}
-      />
+        <Input
+          autoComplete="off"
+          className="focus-visible:ring-offset-0 focus-visible:ring-0"
+          placeholder={`Type "edit" to confirm`}
+          name="confirm"
+          onChange={(e) => setConfirm(e.target.value.toLowerCase())}
+        />
+      </form>
 
       <DialogFooter>
         <DialogClose asChild>
           <Button
             disabled={isDisabled()}
             className="w-full"
-            onClick={handleEditProfile}
+            form="edit-profile-form"
           >
             Save changes
           </Button>

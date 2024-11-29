@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 
 import { useSession } from "next-auth/react";
 
@@ -30,7 +30,8 @@ export const DeleteGoalDialog = ({ id }: DeleteDialog) => {
     goalId: id,
   });
 
-  const handleDeleteClick = () => {
+  const handleDelete = (e: React.FormEvent) => {
+    e.preventDefault();
     callDeleteGoalMutation();
   };
 
@@ -48,20 +49,22 @@ export const DeleteGoalDialog = ({ id }: DeleteDialog) => {
         </DialogDescription>
       </DialogHeader>
 
-      <Input
-        autoComplete="off"
-        className="focus-visible:ring-offset-0 focus-visible:ring-0"
-        placeholder={`Type "delete" to confirm`}
-        onChange={(e) => setConfirm(e.target.value.toLowerCase())}
-        name="confirm"
-      />
+      <form id="delete-goal-form" onSubmit={(e) => handleDelete(e)}>
+        <Input
+          autoComplete="off"
+          className="focus-visible:ring-offset-0 focus-visible:ring-0"
+          placeholder={`Type "delete" to confirm`}
+          onChange={(e) => setConfirm(e.target.value.toLowerCase())}
+          name="confirm"
+        />
+      </form>
 
       <DialogFooter>
         <DialogClose asChild>
           <Button
             disabled={isDisabled()}
             className="w-full"
-            onClick={handleDeleteClick}
+            form="delete-goal-form"
           >
             Delete goal
           </Button>
