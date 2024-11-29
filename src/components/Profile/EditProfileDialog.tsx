@@ -62,10 +62,7 @@ export const EditProfileDialog = ({
   }, [name, description]);
 
   return (
-    <DialogContent
-      className="w-11/12 sm:max-w-md"
-      onOpenAutoFocus={(e) => e.preventDefault()}
-    >
+    <DialogContent className="w-11/12 sm:max-w-md">
       <DialogHeader>
         <DialogTitle>Edit profile</DialogTitle>
         <DialogDescription>

@@ -48,10 +48,7 @@ const GoalCard = ({ goal }: GoalCardProps) => {
         </Card>
       </DialogTrigger>
 
-      <DialogContent
-        className="w-11/12 sm:max-w-md"
-        onOpenAutoFocus={(e) => e.preventDefault()}
-      >
+      <DialogContent className="w-11/12 sm:max-w-md">
         <DeleteGoalDialog id={goal.id} />
       </DialogContent>
     </Dialog>

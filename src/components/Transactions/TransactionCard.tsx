@@ -61,10 +61,7 @@ const TransactionCard = ({ transaction }: TransactionCardProps) => {
             <p>This transaction is for goals</p>
           </TooltipContent>
 
-          <DialogContent
-            className="w-11/12 sm:max-w-md"
-            onOpenAutoFocus={(e) => e.preventDefault()}
-          >
+          <DialogContent className="w-11/12 sm:max-w-md">
             <DeleteTransactionDialog id={transaction.id} />
           </DialogContent>
         </Dialog>
