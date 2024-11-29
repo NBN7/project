@@ -17,7 +17,7 @@ export const SignInButton = () => {
   const handleClick = async () => {
     setIsLoading(true);
 
-    await signIn("google", { callbackUrl: "/" });
+    await signIn("google", { callbackUrl: "/transactions" });
 
     setIsLoading(false);
   };
