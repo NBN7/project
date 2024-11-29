@@ -30,9 +30,7 @@ export const DeleteTransactionDialog = ({ id }: DeleteDialog) => {
     transactionId: id,
   });
 
-  const handleDeleteClick = () => {
-    callDeleteTransactionMutation();
-  };
+  const handleDelete = () => callDeleteTransactionMutation();
 
   const isDisabled = () => {
     return !confirm.length || confirm !== "delete";
@@ -48,20 +46,22 @@ export const DeleteTransactionDialog = ({ id }: DeleteDialog) => {
         </DialogDescription>
       </DialogHeader>
 
-      <Input
-        autoComplete="off"
-        className="focus-visible:ring-offset-0 focus-visible:ring-0"
-        placeholder={`Type "delete" to confirm`}
-        onChange={(e) => setConfirm(e.target.value.toLowerCase())}
-        name="confirm"
-      />
+      <form id="delete-transaction-form" onSubmit={handleDelete}>
+        <Input
+          autoComplete="off"
+          className="focus-visible:ring-offset-0 focus-visible:ring-0"
+          placeholder={`Type "delete" to confirm`}
+          onChange={(e) => setConfirm(e.target.value.toLowerCase())}
+          name="confirm"
+        />
+      </form>
 
       <DialogFooter>
         <DialogClose asChild>
           <Button
             disabled={isDisabled()}
             className="w-full"
-            onClick={handleDeleteClick}
+            form="delete-transaction-form"
           >
             Delete transaction
           </Button>
