@@ -12,4 +12,9 @@ body {
     -webkit-appearance: none;
     margin: 0;
   }
+  input,
+  textarea,
+  select {
+    @apply text-base;
+  }
 }
