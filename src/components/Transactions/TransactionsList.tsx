@@ -69,7 +69,7 @@ export const TransactionsList = () => {
 
       <Card
         ref={parent}
-        className="p-2 min-h-[60px] max-h-[calc(100dvh-355px)] overflow-auto"
+        className="p-2 min-h-[60px] max-h-[calc(100dvh-355px)] overflow-auto sm:max-h-96"
       >
         {!transactions?.length ? (
           <TransactionCardSkeleton />
