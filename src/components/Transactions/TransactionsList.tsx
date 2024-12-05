@@ -71,8 +71,10 @@ export const TransactionsList = () => {
         ref={parent}
         className="p-2 min-h-[60px] max-h-[calc(100dvh-355px)] overflow-auto sm:max-h-96"
       >
-        {!transactions?.length ? (
+        {!transactions ? (
           <TransactionCardSkeleton />
+        ) : !transactions.length ? (
+          <TransactionsEmpty />
         ) : filteredTransactions && filteredTransactions.length > 0 ? (
           filteredTransactions.map(renderTransaction)
         ) : (
