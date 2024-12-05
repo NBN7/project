@@ -39,7 +39,7 @@ const TransactionCard = ({ transaction }: TransactionCardProps) => {
                   <p className="max-w-[200px] sm:max-w-none truncate">
                     {transaction.description}
                   </p>
-                  <p className="text-sm dark:text-greydark text-greylight">
+                  <p className="text-sm max-w-[200px] sm:max-w-none truncate dark:text-greydark text-greylight">
                     {transformDate(transaction.date)}
                   </p>
                 </div>
