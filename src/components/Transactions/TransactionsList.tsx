@@ -67,7 +67,7 @@ export const TransactionsList = () => {
         disabled={!transactions?.length}
       />
 
-      <Card ref={parent} className="p-2 min-h-[60px] max-h-72 overflow-auto sm:max-h-80">
+      <Card ref={parent} className="p-2 min-h-[60px] max-h-[calc(100dvh-350px)] overflow-auto">
         {!transactions?.length ? (
           <TransactionCardSkeleton />
         ) : filteredTransactions && filteredTransactions.length > 0 ? (
