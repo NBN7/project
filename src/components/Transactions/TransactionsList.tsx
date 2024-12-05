@@ -35,7 +35,7 @@ export const TransactionsList = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!transactions) return;
 
-    const value = e.target.value.toLowerCase();
+    const value = e.target.value.toLowerCase().trim();
     const filtered = transactions.filter((transaction) =>
       transaction.description.toLowerCase().includes(value)
     );
@@ -67,7 +67,10 @@ export const TransactionsList = () => {
         disabled={!transactions?.length}
       />
 
-      <Card ref={parent} className="p-2 min-h-[60px] max-h-[calc(100dvh-355px)] overflow-auto">
+      <Card
+        ref={parent}
+        className="p-2 min-h-[60px] max-h-[calc(100dvh-355px)] overflow-auto"
+      >
         {!transactions?.length ? (
           <TransactionCardSkeleton />
         ) : filteredTransactions && filteredTransactions.length > 0 ? (
