@@ -43,7 +43,7 @@ export const TransactionsList = () => {
         Transactions
       </h3>
 
-      <Card ref={parent} className="p-2 min-h-[60px]">
+      <Card ref={parent} className="p-2 min-h-[60px] max-h-80 overflow-auto">
         {!transactions?.length ? (
           <TransactionsEmpty />
         ) : (
