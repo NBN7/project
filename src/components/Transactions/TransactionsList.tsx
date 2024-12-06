@@ -25,6 +25,7 @@ export const TransactionsList = () => {
   const [filteredTransactions, setFilteredTransactions] = useState<
     Transaction[] | undefined
   >(undefined);
+  const [searchQuery, setSearchQuery] = useState("");
   const parent = useRef(null);
 
   const { data: session } = useSession();
@@ -32,22 +33,21 @@ export const TransactionsList = () => {
     session?.user?.id as string
   );
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!transactions) return;
-
-    const value = e.target.value.toLowerCase().trim();
-    const filtered = transactions.filter((transaction) =>
-      transaction.description.toLowerCase().includes(value)
-    );
-
-    setFilteredTransactions(filtered);
-  };
-
   useEffect(() => {
-    if (transactions && !filteredTransactions) {
-      setFilteredTransactions(transactions);
+    if (transactions) {
+      if (searchQuery) {
+        setFilteredTransactions(
+          transactions.filter((transaction) =>
+            transaction.description
+              .toLowerCase()
+              .includes(searchQuery.toLowerCase())
+          )
+        );
+      } else {
+        setFilteredTransactions(transactions);
+      }
     }
-  }, [transactions, filteredTransactions]);
+  }, [transactions, searchQuery]);
 
   useEffect(() => {
     parent.current && autoAnimate(parent.current);
@@ -63,8 +63,9 @@ export const TransactionsList = () => {
         type="search"
         placeholder="Search..."
         className="w-full mb-2 focus-visible:ring-offset-0 focus-visible:ring-0"
-        onChange={handleChange}
         disabled={!transactions?.length}
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
       />
 
       <Card
