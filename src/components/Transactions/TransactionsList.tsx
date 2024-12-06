@@ -40,6 +40,7 @@ export const TransactionsList = () => {
           transactions.filter((transaction) =>
             transaction.description
               .toLowerCase()
+              .trim()
               .includes(searchQuery.toLowerCase())
           )
         );
